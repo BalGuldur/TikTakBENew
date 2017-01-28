@@ -1,22 +1,28 @@
 import React, { PropTypes } from 'react';
+import {SideNavBar} from '../components/SideNavBar.jsx'
 
-const MainWorld = ({ name, current_user, updateName }) => (
-  <div>
-    <h3>
-      Hello, {name}! Hello, {current_user.fullname}
-    </h3>
-    <hr />
-    <form >
-      <label htmlFor="name">
-        Say hello to:
-      </label>
-      <input
-        id="name"
-        type="text"
-        value={name}
-        onChange={(e) => updateName(e.target.value)}
-      />
-    </form>
+const Main = (props) => (
+  <div id="wrapper">
+    <SideNavBar {...props} />
+    <div id="page-wrapper" className="gray-bg dashboard-1">
+      <div className="row border-bottom white-bg dashboard-header">
+        <h3>
+          Hello, {props.name}!
+        </h3>
+        <hr />
+        <form >
+          <label htmlFor="name">
+            Say hello to:
+          </label>
+          <input
+            id="name"
+            type="text"
+            value={props.name}
+            onChange={(e) => updateName(e.target.value)}
+          />
+        </form>
+      </div>
+    </div>
   </div>
 );
 
@@ -25,4 +31,4 @@ const MainWorld = ({ name, current_user, updateName }) => (
 //   updateName: PropTypes.func.isRequired,
 // };
 
-export default MainWorld;
+export default Main;

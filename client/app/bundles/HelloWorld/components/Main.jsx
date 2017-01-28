@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-const HelloWorld = ({ name, updateName }) => (
+const MainWorld = ({ name, current_user, updateName }) => (
   <div>
     <h3>
-      Hello, {name}!
+      Hello, {name}! Hello, {current_user.fullname}
     </h3>
     <hr />
     <form >
@@ -20,9 +20,9 @@ const HelloWorld = ({ name, updateName }) => (
   </div>
 );
 
-HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired,
-  updateName: PropTypes.func.isRequired,
-};
+// HelloWorld.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   updateName: PropTypes.func.isRequired,
+// };
 
-export default HelloWorld;
+export default MainWorld;

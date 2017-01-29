@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
+import {DropDown} from '../components/base_elements/DropDown.jsx'
 
-const UserInfo = (props) =>
-  <div className="profile-element">
+class UserInfo extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render = () =>
+    <DropDown>
+    {/*<a data-toggle="dropdown" className="dropdown-toggle" href="#" aria-expanded="false">*/}
       <span className="clear">
         <span className="block m-t-xs">
           <strong className="font-bold">
-            {props.current_user.fullname}
+            {this.props.current_user.fullname}
+            <b className="caret"/>
           </strong>
         </span>
         <span className="block m-t-xs">
@@ -13,7 +21,12 @@ const UserInfo = (props) =>
           Тут должность будет
         </span>
       </span>
-    </div>
-
+      <ul className="dropdown-menu animated fadeInRight m-t-xs">
+        <li>
+          <a href="/logout">Выйти</a>
+        </li>
+      </ul>
+    </DropDown>
+}
 
 export {UserInfo}

@@ -3,8 +3,6 @@ import {SideNavBar} from '../components/SideNavBar.jsx'
 
 const Main = (props) => (
   <div>
-    <div id="wrapper">
-      <SideNavBar {...props} />
       <div id="page-wrapper" className="gray-bg dashboard-1">
         <div className="row border-bottom white-bg dashboard-header">
           <h3>
@@ -24,7 +22,6 @@ const Main = (props) => (
           </form>
         </div>
       </div>
-    </div>
   </div>
 );
 

@@ -1,14 +1,11 @@
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
+import { Route } from 'react-router';
 
-import MainContainer from '../containers/MainContainer.jsx';
-import AppLayoutContainer from '../containers/AppLayoutContainer.jsx';
-// import DashboardPage from '../components/DashboardPage.jsx'
+import Main from '../containers/MainContainer';
+import Test from '../containers/TestContainer'
 
 export default (
-  <Route>
-    <Route path="/" component={AppLayoutContainer}>
-      <IndexRoute component={MainContainer} />
-    </Route>
+  <Route path="/" component={Main}>
+    <Route path="/test" component={Test}/>
   </Route>
 );

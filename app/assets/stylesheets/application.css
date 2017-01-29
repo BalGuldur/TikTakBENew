@@ -14,5 +14,7 @@
  *= require bootstrap
  *= require animate
  *= require Inspinia/style
+ * TODO: Посмотреть почему подключаются не все иконки от awesome
+ *= require font-awesome/scss/font-awesome
  *= require_self
  */

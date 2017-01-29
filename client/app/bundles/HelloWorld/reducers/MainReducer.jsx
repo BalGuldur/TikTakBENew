@@ -15,7 +15,13 @@ const current_user = (state = '', action) => {
       return state;
   }
 }
+const menu_items = (state = '', action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
 
-const MainReducer = combineReducers({ name, current_user });
+const MainReducer = combineReducers({ name, current_user, menu_items });
 
 export default MainReducer;

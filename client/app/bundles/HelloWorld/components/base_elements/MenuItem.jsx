@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const MenuItem = (props) =>
   <li>
-    <a href={props.link}>
-      <i className={props.icon}/>
+    <Link to={props.link}>
+      <i className={props.icon}></i>
       <span className="nav-label">{props.title}</span>
-    </a>
+    </Link>
   </li>
 
 export {MenuItem}

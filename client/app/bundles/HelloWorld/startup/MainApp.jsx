@@ -1,5 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import routes from '../routes/routes'
 
 import configureStore from '../store/MainStore';
 import MainContainer from '../containers/MainContainer';
@@ -11,7 +13,9 @@ import MainContainer from '../containers/MainContainer';
 // knowing the locale. See the React on Rails documentation for more info on the railsContext
 const MainApp = (props, _railsContext) => (
   <Provider store={configureStore(props)}>
-    <MainContainer />
+    <Router history={browserHistory}>
+      {routes}
+    </Router>
   </Provider>
 );
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {SideNavBar} from '../components/SideNavBar.jsx'
+import { Link } from 'react-router'
 
 const Main = (props) => (
   <div id="wrapper">
@@ -9,6 +10,8 @@ const Main = (props) => (
         <h3>
           Hello, {props.name}!
         </h3>
+        <Link to="/test">Test link</Link>
+        {props.children}
         <hr />
         <form >
           <label htmlFor="name">

@@ -6,8 +6,27 @@ class User < ApplicationRecord
 
   has_many :omni_auth_accounts
 
+  def react_model
+    {
+        fullname: fullname,
+        photo: photo,
+        id: id
+    }
+  end
+
   def display_name
     # TODO: В последующем тут должно быть обращение к employee )
     self.fullname
+  end
+
+  def photo
+    result = ''
+    if omni_auth_accounts
+      omni_auth_accounts.each do |account|
+        result = account.photo if account.photo
+        break if account.photo
+      end
+    end
+    result
   end
 end

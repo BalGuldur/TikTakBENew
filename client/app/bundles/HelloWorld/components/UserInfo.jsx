@@ -9,6 +9,9 @@ class UserInfo extends Component {
   render = () =>
     <DropDown>
     {/*<a data-toggle="dropdown" className="dropdown-toggle" href="#" aria-expanded="false">*/}
+      <span>
+        <img alt="image" className="img-circle" src={this.props.current_user.photo}/>
+      </span>
       <span className="clear">
         <span className="block m-t-xs">
           <strong className="font-bold">

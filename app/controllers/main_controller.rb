@@ -5,6 +5,6 @@ class MainController < ApplicationController
         {id: 2, title: 'Второй пункт', link: '/test', icon: 'fa fa-camera'},
     ]
 
-    @main_props = { name: 'stranger', current_user: current_user, menu_items: menu_items }
+    @main_props = { name: 'stranger', current_user: current_user.react_model, menu_items: menu_items }
   end
 end

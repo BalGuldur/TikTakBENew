@@ -6,4 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Company.find_or_create_by(title: 'CrazyCats24')
+# Создаем компанию и выбираем для заполнения данных
+company = Company.find_or_create_by(title: 'CrazyCats24')
+ActsAsTenant.current_tenant = company
+
+# Создаем одну учетку
+# TODO: добавить заведение к employee
+Employee.find_or_create_by(
+            position: "IT Админ",
+            fullname: "Александр Крылов",
+            nickname: "admin",
+            emp_hash: "admin_hash",
+)

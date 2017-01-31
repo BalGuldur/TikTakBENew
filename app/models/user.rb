@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:vkontakte]
 
-  has_many :omni_auth_accounts
+  has_many :omni_auth_accounts, dependent: :destroy
+  has_many :employees
 
   def react_model
     {

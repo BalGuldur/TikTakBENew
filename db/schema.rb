@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130091951) do
+ActiveRecord::Schema.define(version: 20170131184506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20170130091951) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
     t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "deleted"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id", using: :btree
   end
 
   create_table "omni_auth_accounts", force: :cascade do |t|
@@ -65,5 +74,6 @@ ActiveRecord::Schema.define(version: 20170130091951) do
 
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
+  add_foreign_key "locations", "companies"
   add_foreign_key "omni_auth_accounts", "users"
 end

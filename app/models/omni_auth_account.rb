@@ -40,7 +40,7 @@ class OmniAuthAccount < ApplicationRecord
     # Ищем или создаем аккаунт
     @account = OmniAuthAccount.find_by(provider: token[:provider], uid: token[:uid])
     if @account.present?
-      omni_auth_logger.info("Find account for token #{token.as_json}, result #{@account.as_json}")
+      omni_auth_logger.info("Find account for\ntoken #{token.as_json}\nresult #{@account.as_json}")
     else
       @account = OmniAuthAccount.new(provider: token[:provider], uid: token[:uid]) unless @account
       omni_auth_logger.info("Not find account for token #{token.as_json}, create new account #{@account.as_json}")
@@ -73,7 +73,9 @@ class OmniAuthAccount < ApplicationRecord
       @account.save
       omni_auth_logger.info("Add employee to user and empty hash \n user #{@user} \n employee #{employee} \n account #{@account}")
     else
+      @user = @account.user
       @user.employees << employee
+      employee.update emp_hash: nil
       omni_auth_logger.info("Find account and user present, set employee\n user #{@user}\n employee #{employee}")
     end
     omni_auth_logger.info("Finish create account by employee\naccount #{@account.as_json}\nemployee #{employee.as_json}\nuser #{@user.as_json}")

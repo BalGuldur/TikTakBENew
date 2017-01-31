@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  set_current_tenant_through_filter
+  before_filter :configure_current_tenant
+
   before_action :emp_hash_params
   before_action :check_auth, unless: :devise_controller?
   before_action :check_many_companies
+  before_action :check_current_tenant, unless: :devise_controller?
 
   protected
 
@@ -13,8 +17,9 @@ class ApplicationController < ActionController::Base
         when current_user.employees.count == 0
           raise "Нет сотрудников у пользователя"
         when current_user.employees.count == 1
-          session[:current_company] = current_user.employees.first.company
+          set_current_company current_user.employees.first.company
         when (current_user.employees.count > 1 and current_company.blank?)
+          puts "current_company #{current_company.as_json}"
           redirect_to select_company_path
       end
     end
@@ -31,10 +36,25 @@ class ApplicationController < ActionController::Base
   end
 
   def current_company
-    session[:current_company]
+    Company.find_by(comp_hash: session[:current_company_hash])
   end
 
   def set_current_company company
-    session[:current_company] = company
+    session[:current_company_hash] = company.comp_hash
+  end
+
+  def configure_current_tenant
+    if session[:current_company_hash].present?
+      company = Company.find_by(comp_hash: session[:current_company_hash])
+      if company.present?
+        set_current_tenant(company)
+      end
+    end
+  end
+
+  def check_current_tenant
+    if ActsAsTenant.current_tenant.blank?
+      raise "Error with tenant on application_controller"
+    end
   end
 end

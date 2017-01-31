@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  deleted: false
+  company: one
+
+two:
+  title: MyString
+  deleted: false
+  company: two

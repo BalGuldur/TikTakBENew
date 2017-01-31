@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'choose_company', to: 'main#choose_company', as: 'choose_company'
 
   # Перенаправление страниц на react-router
-  get 'test', to: 'main#index'
+  # Тестовое перенаправление
+  # get 'test', to: 'main#index'
+  get 'locations', to: 'main#index'
 
   get 'hello_world', to: 'hello_world#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

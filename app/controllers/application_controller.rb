@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
 
   def set_current_company company
     session[:current_company_hash] = company.comp_hash
+    configure_current_tenant
   end
 
   def configure_current_tenant

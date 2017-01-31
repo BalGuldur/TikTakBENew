@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :omni_auth_accounts, dependent: :destroy
   has_many :employees
+  has_many :companies, through: :employees
 
   def react_model
     {

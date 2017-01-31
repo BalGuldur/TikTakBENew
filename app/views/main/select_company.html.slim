@@ -1,0 +1,4 @@
+div Choose you company
+- @companies.each do |company|
+  div
+    = link_to company.title, choose_company_path(comp_hash: company.comp_hash)

@@ -18,3 +18,16 @@ Employee.find_or_create_by(
             nickname: "admin",
             emp_hash: "admin_hash",
 )
+
+# Создаем компанию и выбираем для заполнения данных
+company = Company.find_or_create_by(title: 'TestSecondCompany')
+ActsAsTenant.current_tenant = company
+
+# Создаем одну учетку
+# TODO: добавить заведение к employee
+Employee.find_or_create_by(
+    position: "IT Админ",
+    fullname: "Александр Крылов",
+    nickname: "admin",
+    emp_hash: "admin_hash2",
+)

@@ -15,6 +15,9 @@ class SideNavBar extends Component {
       <div className="sidebar-collapse">
         <ul className="nav metismenu" id="side-menu">
           <li className="nav-header">
+            <strong className="font-bold">
+              {this.props.current_company.title}
+            </strong>
             <UserInfo current_user={this.props.current_user}/>
           </li>
           {this.props.menu_items.map(this.renderMenuItem)}

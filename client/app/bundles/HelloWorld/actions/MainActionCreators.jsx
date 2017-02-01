@@ -6,3 +6,6 @@ export const updateName = (text) => ({
   type: MAIN_NAME_UPDATE,
   text,
 });
+export const createLocation = (location) => {
+  console.log('create Location ' + location)
+};

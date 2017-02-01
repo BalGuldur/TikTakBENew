@@ -4,7 +4,6 @@ import { Router, browserHistory } from 'react-router';
 import routes from '../routes/routes'
 
 import configureStore from '../store/MainStore';
-import MainContainer from '../containers/MainContainer';
 
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.

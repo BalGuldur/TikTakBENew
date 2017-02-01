@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # Перенаправление страниц на react-router
   # Тестовое перенаправление
-  # get 'test', to: 'main#index'
+  get 'test', to: 'main#index'
   get 'locations', to: 'main#index'
 
   get 'hello_world', to: 'hello_world#index'

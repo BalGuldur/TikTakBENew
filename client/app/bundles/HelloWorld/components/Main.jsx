@@ -8,7 +8,6 @@ const Main = (props) => (
       Hello, {props.name}!
     </h3>
     <Link to="/test">Test link</Link>
-    {props.children}
     <hr />
     <form >
       <label htmlFor="name">

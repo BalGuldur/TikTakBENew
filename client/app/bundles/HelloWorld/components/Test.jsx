@@ -1,10 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, {PropTypes} from 'react';
+// import {SideNavBar} from '../components/SideNavBar.jsx'
+import {Link} from 'react-router'
 
-const Test = (props) =>
-  <div>
-    <div>Test page</div>
-    <Link to="/" >Home</Link>
+const Test = (props) => (
+  <div className="row border-bottom white-bg dashboard-header">
+    <h3>
+      Hello, {props.name}!
+    </h3>
+    <Link to="/test">Test link</Link>
+    <hr />
+    <form >
+      <label htmlFor="name">
+        Say hello to:
+      </label>
+      <input
+        id="name"
+        type="text"
+        value={props.name}
+        onChange={(e) => updateName(e.target.value)}
+      />
+    </form>
   </div>
+);
 
-export default Test
+// HelloWorld.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   updateName: PropTypes.func.isRequired,
+// };
+
+export default Test;

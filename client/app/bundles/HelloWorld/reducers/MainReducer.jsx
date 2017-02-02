@@ -15,6 +15,12 @@ const current_user = (state = '', action) => {
       return state;
   }
 }
+const current_company = (state = '', action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
 const menu_items = (state = '', action) => {
   switch (action.type) {
     default:
@@ -28,6 +34,6 @@ const locations = (state = '', action) => {
   }
 }
 
-const MainReducer = combineReducers({ name, current_user, menu_items, locations });
+const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company });
 
 export default MainReducer;

@@ -17,7 +17,7 @@ const Main = (props) => (
         id="name"
         type="text"
         value={props.name}
-        onChange={(e) => updateName(e.target.value)}
+        onChange={(e) => props.updateName(e.target.value)}
       />
     </form>
   </div>

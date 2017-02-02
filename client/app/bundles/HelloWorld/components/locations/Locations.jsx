@@ -22,7 +22,7 @@ class Locations extends Component {
         id="name"
         type="text"
         value={this.props.name}
-        onChange={(e) => this.updateName(e.target.value)}
+        onChange={(e) => this.props.updateName(e.target.value)}
       />
     </div>
   }

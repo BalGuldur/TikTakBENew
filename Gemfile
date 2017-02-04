@@ -18,6 +18,8 @@ gem 'omniauth-vkontakte'
 gem 'slim'
 # Для разделения на отдельные компании
 gem 'acts_as_tenant'
+# Для версионности ссылок API
+gem 'versionist'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

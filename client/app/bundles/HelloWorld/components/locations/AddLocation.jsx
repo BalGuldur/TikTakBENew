@@ -10,7 +10,7 @@ class AddLocation extends Component {
   render = () =>
     <div className="col-lg-4">
       <AddButtonWithForm>
-        <AddLocationForm actions={this.props.actions}/>
+        <AddLocationForm {...this.props}/>
       </AddButtonWithForm>
     </div>
 }

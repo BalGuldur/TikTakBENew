@@ -6,16 +6,12 @@ class AddLocationForm extends Component {
     super(props)
 
     this.state = {
-      fullname: '',
+      title: '',
     }
   }
 
-  handleChangeFullname = (event) => {
-    this.setState({fullname: event.target.value})
-  }
-
-  submitAddLocation = () => {
-    console.log('submit add location')
+  handleChangeTitle = (event) => {
+    this.setState({title: event.target.value})
   }
 
   render = () =>
@@ -26,13 +22,13 @@ class AddLocationForm extends Component {
           <input
             type="text"
             className="form-control"
-            value={this.state.fullname}
-            onChange={this.handleChangeFullname}
+            value={this.state.title}
+            onChange={this.handleChangeTitle}
           >
           </input>
         </div>
         <div className="form-group">
-          <button calssName="btn btn-default" onClick={actions.updateName.bind(this, 'test')}>
+          <button className="btn btn-default" onClick={this.props.createLocation.bind(this, this.state.title)}>
             <i className="fa fa-check"></i>
           </button>
         </div>

@@ -20,6 +20,10 @@ gem 'slim'
 gem 'acts_as_tenant'
 # Для версионности ссылок API
 gem 'versionist'
+# Сервер сообщений Faye
+gem 'faye'
+# Сервер для Faye
+gem 'thin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

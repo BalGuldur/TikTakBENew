@@ -31,7 +31,7 @@ BackoffScheduler.prototype = Object.create(Faye.Scheduler.prototype)
 // 	},
 // }
 
-const Client = new Faye.Client(gon.faye.server, {scheduler: BackoffScheduler})
+// const Client = new Faye.Client(gon.faye.server, {scheduler: BackoffScheduler})
 
 // Client.addExtension(Notification)
 //

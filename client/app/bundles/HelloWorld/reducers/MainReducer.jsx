@@ -43,7 +43,9 @@ const faye = (state = '', action) => {
 function faye_channels(state = '', action) {
   switch (action.type) {
     case types.ADD_FAYE_CHANNEL:
-      return action.channel;
+      return [...state, action.channel];
+    case types.DELETE_FAYE_CHANNEL:
+      return state.filter(element => element !== action.channel)
     default:
       return state;
   }

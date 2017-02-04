@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   before_action :check_many_companies
   before_action :check_current_tenant, unless: :devise_controller?
 
+  def broadcast(channel, message)
+    message = {channel: channel, data: message}
+    uri = URI.parse FAYE_ADDR_FOR_CLIENT
+    Net::HTTP.post_form(uri, message: message.to_json)
+  end
+
   protected
 
   def check_many_companies

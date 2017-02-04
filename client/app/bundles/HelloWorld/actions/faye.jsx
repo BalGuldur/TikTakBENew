@@ -3,7 +3,7 @@ import * as types from '../constants/main'
 // import {chanelActions} from './broadcast'
 
 // export function updateUserSubscriptions() {
-// 	const channels = gon.faye.channels
+// 	const channels =
 //
 // 	return (dispatch, getState) => {
 // 		let {userSubscriptions} = getState()
@@ -24,6 +24,10 @@ export const addFayeChannel = (channel) => ({
   type: types.ADD_FAYE_CHANNEL,
   channel,
 });
+export const deleteFayeChannel = (channel) => ({
+  type: types.DELETE_FAYE_CHANNEL,
+  channel,
+})
 
 // export function updateBroadcastSubscription() {
 // 	return (dispatch, getState) => {

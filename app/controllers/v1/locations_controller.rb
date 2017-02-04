@@ -6,6 +6,7 @@ class V1::LocationsController < V1::BaseController
     if @location.save
       # render json: @location, status: :ok
       render json: @location, status: :ok
+      broadcast('/broadcast', 'test')
     else
       render json: @location.errors, status: 400
     end

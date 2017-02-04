@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as actions from '../../actions/MainActionCreators'
 
 class AddLocationForm extends Component {
   constructor(props) {

@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { MAIN_NAME_UPDATE } from '../constants/MainConstants';
+// import { MAIN_NAME_UPDATE } from '../constants/main';
+import * as types from '../constants/main'
 
 const name = (state = '', action) => {
   switch (action.type) {
-    case MAIN_NAME_UPDATE:
+    case types.MAIN_NAME_UPDATE:
       return action.text;
     default:
       return state;
@@ -33,7 +34,21 @@ const locations = (state = '', action) => {
       return state;
   }
 }
+const faye = (state = '', action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+function faye_channels(state = '', action) {
+  switch (action.type) {
+    case types.ADD_FAYE_CHANNEL:
+      return action.channel;
+    default:
+      return state;
+  }
+}
 
-const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company });
+const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company, faye, faye_channels });
 
 export default MainReducer;

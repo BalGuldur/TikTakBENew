@@ -7,7 +7,7 @@ class Locations extends Component {
   }
 
   renderLocation = (location) =>
-    <div>Test location</div>
+    <div key={location.id}>Test location</div>
 
   render = () => {
     return <div className="wrapper wrapper-content animated fadeInRight">

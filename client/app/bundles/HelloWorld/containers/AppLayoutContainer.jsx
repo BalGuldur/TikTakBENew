@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 import AppLayout from '../components/layouts/AppLayout';
-import * as actions from '../actions/MainActionCreators';
+import actions from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => ({ ...state });

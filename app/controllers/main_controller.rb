@@ -14,7 +14,9 @@ class MainController < ApplicationController
         current_user: current_user.react_model,
         menu_items: menu_items,
         current_company: current_company,
-        locations: current_company.locations
+        locations: current_company.locations,
+        faye: {server: FAYE_ADDR_FOR_CLIENT, token: FAYE_TOKEN},
+        faye_channels: ["/broadcast", "/companies/#{current_company.id}"]
     }
   end
 

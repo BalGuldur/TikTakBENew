@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Locations from '../components/locations/Locations';
-import * as actions from '../actions/MainActionCreators';
+import actions from '../actions';
 
 const mapStateToProps = (state) => ({...state})
 

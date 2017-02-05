@@ -6,6 +6,14 @@ class Locations extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.initialUserSubscriptions()
+  }
+
+  componentWillUnmount() {
+    this.props.cancelAllUserSubscriptions()
+  }
+
   renderLocation = (location) =>
     <div key={location.id}>Test location</div>
 

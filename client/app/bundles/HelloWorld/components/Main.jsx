@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 // import {SideNavBar} from '../components/SideNavBar.jsx'
 import {Link} from 'react-router'
-import {channelActions, logMessage} from '../actions/broadcast'
+
+// import fayeSubscribe from '../faye/faye'
 // import Client from '../faye/faye'
 
 class Main extends Component {
@@ -10,21 +11,11 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    // const {userSubscriptions} = this.props
-    // const {updateUserSubscriptions} = this.props.actions
-    //
-    // if (!userSubscriptions) {
-    //   updateUserSubscriptions()
-    // }
-    // const channels = this.props.faye_channels
-    // const server = this.props.faye.server
-    // const Client = new Faye.Client(server)
-    //
-    // channels.map(ch =>
-    //   Client.subscribe(ch, channelActions)
-    // )
-    const Client = new Faye.Client(this.props.faye.server)
-    Client.subscribe('/broadcast', logMessage)
+    this.props.initialUserSubscriptions()
+  }
+
+  componentWillUnmount() {
+    this.props.cancelAllUserSubscriptions()
   }
 
   render = () =>

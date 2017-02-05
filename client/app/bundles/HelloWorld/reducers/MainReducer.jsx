@@ -40,17 +40,21 @@ const faye = (state = '', action) => {
       return state;
   }
 }
-function faye_channels(state = '', action) {
+function initial_faye_channels(state = '', action) {
   switch (action.type) {
-    case types.ADD_FAYE_CHANNEL:
-      return [...state, action.channel];
-    case types.DELETE_FAYE_CHANNEL:
-      return state.filter(element => element !== action.channel)
+    default:
+      return state;
+  }
+}
+function userSubscriptions(state = '', action) {
+  switch (action.type) {
+    case types.SET_USER_SUBSCRIPTIONS:
+      return action.subscribes;
     default:
       return state;
   }
 }
 
-const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company, faye, faye_channels });
+const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company, faye, initial_faye_channels, userSubscriptions });
 
 export default MainReducer;

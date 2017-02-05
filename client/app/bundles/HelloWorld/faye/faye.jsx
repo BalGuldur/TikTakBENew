@@ -1,9 +1,9 @@
 // import confirm from '../frontend/actions/confirm'
 
-const BackoffScheduler = function () {
-	Faye.Scheduler.apply(this, arguments)
-}
-BackoffScheduler.prototype = Object.create(Faye.Scheduler.prototype)
+// const BackoffScheduler = function () {
+// 	Faye.Scheduler.apply(this, arguments)
+// }
+// BackoffScheduler.prototype = Object.create(Faye.Scheduler.prototype)
 
 // Расширение для оповещения при разрыве соединения
 // const Notification = {
@@ -42,21 +42,31 @@ BackoffScheduler.prototype = Object.create(Faye.Scheduler.prototype)
 // }, 30000)
 
 // TODO: Поправить авторизацию faye для исходящих из клиента сообщений
-const Auth = {
-	outgoing: function(message, callback) {
-		let ref;
-		if (message['channel'] !== '/meta/subscribe') {
-			return callback(message);
-		}
+// const Auth = {
+// 	outgoing: function(message, callback) {
+// 		let ref;
+// 		if (message['channel'] !== '/meta/subscribe') {
+// 			return callback(message);
+// 		}
+//
+// 		if (message['ext'] == null) {
+// 			message['ext'] = {};
+// 		}
+// 		message['ext']['client_token'] = (ref = gon.user) != null ? ref.faye_token : void 0;
+// 		return callback(message);
+// 	}
+// };
+//
+// Client.addExtension(Auth);
 
-		if (message['ext'] == null) {
-			message['ext'] = {};
-		}
-		message['ext']['client_token'] = (ref = gon.user) != null ? ref.faye_token : void 0;
-		return callback(message);
-	}
-};
+import {channelActions, logMessage} from '../actions/broadcast'
 
-Client.addExtension(Auth);
+const Client = (server) =>
+  new Faye.Client(server)
 
-export default Client
+const fayeSubscribe = (channels, server) => {
+  var userSubscriptions = channels.map(channel => Client(server).subscribe(channel, logMessage))
+  return userSubscriptions
+}
+
+export default fayeSubscribe

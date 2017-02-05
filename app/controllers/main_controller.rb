@@ -16,7 +16,7 @@ class MainController < ApplicationController
         current_company: current_company,
         locations: current_company.locations,
         faye: {server: FAYE_ADDR_FOR_CLIENT, token: FAYE_TOKEN},
-        faye_channels: ["/broadcast", "/companies/#{current_company.id}"]
+        initial_faye_channels: ["/broadcast", "/companies/#{current_company.id}"]
     }
   end
 

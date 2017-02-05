@@ -1,4 +1,5 @@
 import * as types from '../constants/main'
+import fayeSubscribe from '../faye/faye'
 // import Client from '../faye/faye'
 // import {chanelActions} from './broadcast'
 
@@ -20,14 +21,31 @@ import * as types from '../constants/main'
 // 	}
 // }
 
-export const addFayeChannel = (channel) => ({
-  type: types.ADD_FAYE_CHANNEL,
-  channel,
-});
-export const deleteFayeChannel = (channel) => ({
-  type: types.DELETE_FAYE_CHANNEL,
-  channel,
+export const setUserSubscriptions = (channels, server) => ({
+    type: types.SET_USER_SUBSCRIPTIONS,
+    subscribes: fayeSubscribe(channels, server)
 })
+
+export function initialUserSubscriptions() {
+  return (dispatch, getState) => {
+    let { initial_faye_channels } = getState()
+    let { faye } = getState()
+
+    dispatch(setUserSubscriptions(initial_faye_channels, faye.server))
+    // return {
+    //   type: types.SET_USER_SUBSCRIPTIONS,
+    //   subscribes: fayeSubscribe(initial_faye_channels, faye.server)
+    // }
+  }
+}
+
+export function cancelAllUserSubscriptions() {
+  return (dispatch, getState) => {
+    let {userSubscriptions} = getState()
+    userSubscriptions.map(subs => subs.cancel())
+  }
+}
+
 
 // export function updateBroadcastSubscription() {
 // 	return (dispatch, getState) => {

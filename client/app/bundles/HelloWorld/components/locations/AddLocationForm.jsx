@@ -13,9 +13,15 @@ class AddLocationForm extends Component {
     this.setState({title: event.target.value})
   }
 
+  submitForm = () => {
+    this.props.closeForm()
+    console.log('create location')
+    this.props.createLocation(this.state.title)
+  }
+
   render = () =>
-    <div className="ibox float-e-margins">
-      <div className="ibox-content">
+    <div>
+      <div className="form">
         <div className="form-group">
           <label className="col-sm-2 control-label">Название</label>
           <input
@@ -27,7 +33,7 @@ class AddLocationForm extends Component {
           </input>
         </div>
         <div className="form-group">
-          <button className="btn btn-default" onClick={this.props.createLocation.bind(this, this.state.title)}>
+          <button className="btn btn-default" onClick={this.submitForm}>
             <i className="fa fa-check"></i>
           </button>
         </div>

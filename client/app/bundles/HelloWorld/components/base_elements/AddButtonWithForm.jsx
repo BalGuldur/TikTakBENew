@@ -3,28 +3,20 @@ import React, { Component } from 'react'
 class AddButtonWithForm extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      openAddForm: false,
-    }
   }
 
   displayForm = () => {
-    if(this.state.openAddingForm) {
+    if(this.props.open) {
       return {}
     } else {
       return {display: "none"}
     }
   }
 
-  changeStateFrom = () => {
-    this.setState({openAddingForm: !this.state.openAddingForm})
-  }
-
   render = () =>
     <div className="ibox-content">
       <div className="row">
-        <button className="btn btn-default" onClick={this.changeStateFrom}>
+        <button className="btn btn-default" onClick={this.props.changeOpen}>
           <i className="fa fa-plus">Добавить заведение</i>
         </button>
       </div>

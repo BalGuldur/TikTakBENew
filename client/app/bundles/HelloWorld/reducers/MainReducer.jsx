@@ -22,6 +22,14 @@ const current_company = (state = '', action) => {
       return state;
   }
 }
+const current_location = (state = '', action) => {
+  switch (action.type) {
+    case types.CHOOSE_LOCATION:
+      return action.location
+    default:
+      return state;
+  }
+}
 const menu_items = (state = '', action) => {
   switch (action.type) {
     default:
@@ -30,6 +38,10 @@ const menu_items = (state = '', action) => {
 }
 const locations = (state = '', action) => {
   switch (action.type) {
+    case types.REMOVE_LOCATION:
+      return state.filter(element => element.id !== action.location.id)
+    case types.ADD_LOCATION:
+      return [...state, action.location]
     default:
       return state;
   }
@@ -55,6 +67,16 @@ function userSubscriptions(state = '', action) {
   }
 }
 
-const MainReducer = combineReducers({ name, current_user, menu_items, locations, current_company, faye, initial_faye_channels, userSubscriptions });
+const MainReducer = combineReducers({
+  name,
+  current_user,
+  menu_items,
+  locations,
+  current_company,
+  current_location,
+  faye,
+  initial_faye_channels,
+  userSubscriptions
+});
 
 export default MainReducer;

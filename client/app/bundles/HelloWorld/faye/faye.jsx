@@ -64,8 +64,8 @@ import {channelActions, logMessage} from '../actions/broadcast'
 const Client = (server) =>
   new Faye.Client(server)
 
-const fayeSubscribe = (channels, server) => {
-  var userSubscriptions = channels.map(channel => Client(server).subscribe(channel, logMessage))
+const fayeSubscribe = (dispatch, getState, channels, server) => {
+  var userSubscriptions = channels.map(channel => Client(server).subscribe(channel, channelActions.bind(null, dispatch, getState)))
   return userSubscriptions
 }
 

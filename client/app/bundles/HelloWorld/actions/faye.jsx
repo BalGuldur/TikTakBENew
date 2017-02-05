@@ -21,17 +21,23 @@ import fayeSubscribe from '../faye/faye'
 // 	}
 // }
 
-export const setUserSubscriptions = (channels, server) => ({
+export const setUserSubscriptions = (dispatch, getState ,channels, server) => ({
     type: types.SET_USER_SUBSCRIPTIONS,
-    subscribes: fayeSubscribe(channels, server)
+    subscribes: fayeSubscribe(dispatch, getState, channels, server)
 })
 
 export function initialUserSubscriptions() {
   return (dispatch, getState) => {
     let { initial_faye_channels } = getState()
+    let { current_location } = getState()
     let { faye } = getState()
+    if (current_location) {
+      var channels = [...initial_faye_channels, '/locations/'+current_location.id]
+    } else {
+      var channels = initial_faye_channels
+    }
 
-    dispatch(setUserSubscriptions(initial_faye_channels, faye.server))
+    dispatch(setUserSubscriptions(dispatch, getState ,channels, faye.server))
     // return {
     //   type: types.SET_USER_SUBSCRIPTIONS,
     //   subscribes: fayeSubscribe(initial_faye_channels, faye.server)

@@ -9,20 +9,3 @@ export const updateName = (text) => ({
   type: types.MAIN_NAME_UPDATE,
   text,
 });
-export function createLocation(title) {
-  return (dispatch) => {
-    console.log('start test')
-
-    fetchDataClean({
-      url: '/locations',
-      method: 'POST',
-      data: {title: title},
-      success: (data) => {
-        console.log('success add location response is' + data)
-      },
-      errors: (data) => {
-        console.log('error add location response is' + data)
-      }
-    })
-  }
-};

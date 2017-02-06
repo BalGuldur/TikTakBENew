@@ -9,6 +9,7 @@ class OmniAuthAccount < ApplicationRecord
     account = OmniAuthAccount.find_by(provider: token[:provider], uid: token[:uid])
     if account.present?
       omni_auth_logger.info("Find account by token #{token.as_json}, result account #{account.as_json}")
+      account.update photo: token[:photo]
     else
       omni_auth_logger.warn("Don't find account for #{token.as_json}, Finish finding user for token #{token.as_json}")
       return nil
@@ -21,6 +22,8 @@ class OmniAuthAccount < ApplicationRecord
       if account.user.employees.blank?
         user.errors.add(:find, "Not find employee for user_id #{user.id}")
         omni_auth_logger.warn("Not find employee for user #{user.as_json}")
+      else
+        account.user.employees.each {|employee| employee.update photo: token[:photo]}
       end
     else
       user = User.new
@@ -66,7 +69,7 @@ class OmniAuthAccount < ApplicationRecord
       # Добавляем сотрудника в пользователя
       @user.employees << employee
       @user.save
-      employee.update emp_hash: nil
+      employee.update emp_hash: nil, photo: token[:photo]
 
       # Обновляем пользователя для аккаунта
       @account.user = @user

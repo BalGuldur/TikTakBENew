@@ -23,7 +23,7 @@ class Employees extends Component {
       <div className="col-lg-4">
         <div className="contact-box">
           <div className="col-sm-4">
-            <img alt="image" className="img-circle m-t-xs img-responsive" src=""></img>
+            <img alt="image" className="img-circle m-t-xs img-responsive" src={employee.photo}></img>
           </div>
           <div className="col-sm-8">
             <h3><strong>{employee.fullname}</strong></h3>

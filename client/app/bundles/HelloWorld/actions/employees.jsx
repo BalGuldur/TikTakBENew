@@ -11,6 +11,7 @@ export function fetchEmployees() {
       method: 'GET',
       success: (data) => {
         console.log('success fetch employees')
+        dispatch({type: types.SET_EMPLOYEES, data})
       },
       errors: (data) => {
         console.log('error fetch employees')

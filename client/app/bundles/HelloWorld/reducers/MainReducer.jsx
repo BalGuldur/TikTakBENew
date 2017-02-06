@@ -66,6 +66,14 @@ function userSubscriptions(state = '', action) {
       return state;
   }
 }
+function employees(state = '', action) {
+  switch (action.type) {
+    case types.SET_EMPLOYEES:
+      return action.data;
+    default:
+      return state;
+  }
+}
 
 const MainReducer = combineReducers({
   name,
@@ -76,7 +84,8 @@ const MainReducer = combineReducers({
   current_location,
   faye,
   initial_faye_channels,
-  userSubscriptions
+  userSubscriptions,
+  employees,
 });
 
 export default MainReducer;

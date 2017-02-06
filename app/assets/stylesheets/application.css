@@ -16,5 +16,6 @@
  *= require Inspinia/style
  * TODO: Посмотреть почему подключаются не все иконки от awesome
  *= require font-awesome/scss/font-awesome
+ *= require react-bootstrap-modal/rbm-patch
  *= require_self
  */

@@ -7,6 +7,7 @@ class MainController < ApplicationController
     menu_items = [
         {id: 1, title: 'Первый пункт', link: '/', icon: 'fa fa-camera'},
         {id: 2, title: 'Заведения', link: '/locations', icon: 'fa fa-building-o'},
+        {id: 3, title: 'Сотрудники', link: '/employees', icon: 'fa fa-child'}
     ]
 
     @main_props = {

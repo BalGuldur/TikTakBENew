@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   # Тестовое перенаправление
   get 'test', to: 'main#index'
   get 'locations', to: 'main#index'
+  get 'employees', to: 'main#index'
 
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do

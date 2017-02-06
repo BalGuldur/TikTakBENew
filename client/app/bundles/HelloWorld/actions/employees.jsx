@@ -21,7 +21,6 @@ export function fetchEmployees() {
 }
 export function createEmployee(employee) {
   return (dispatch) => {
-    let data = {auth_link: 'test'}
     console.log('create new employee')
 
     fetchDataClean({
@@ -37,6 +36,23 @@ export function createEmployee(employee) {
         console.log('error create employee')
       }
     })
+  }
+}
+export function deleteEmployee(employee) {
+  return (dispatch) => {
+    console.log('delete employee')
+    console.log(employee)
 
+    fetchDataClean({
+      url: '/employees/'+employee.id,
+      method: 'DELETE',
+      success: (data) => {
+        console.log('success delete employee')
+        dispatch({type: types.DELETE_EMPLOYEE, employee: data})
+      },
+      errors: (data) => {
+        console.log('error delete employee')
+      }
+    })
   }
 }

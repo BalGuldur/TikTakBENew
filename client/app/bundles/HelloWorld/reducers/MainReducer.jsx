@@ -72,6 +72,8 @@ function employees(state = '', action) {
       return action.data;
     case types.ADD_EMPLOYEE:
       return [...state, action.employee]
+    case types.DELETE_EMPLOYEE:
+      return state.filter(element => element.id !== action.employee.id)
     default:
       return state;
   }

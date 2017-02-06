@@ -33,7 +33,7 @@ class Employees extends Component {
   }
 
   renderEmployee = (employee) =>
-    <Employee key={employee.id} {...employee} />
+    <Employee key={employee.id} {...this.props} employee={employee} />
   renderEmployees = () => {
     if (this.props.employees == '') {
       return <div className="row">Нет сотрудников</div>

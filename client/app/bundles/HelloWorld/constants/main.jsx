@@ -7,6 +7,7 @@ export const ADD_LOCATION = 'ADD_LOCATION';
 export const CHOOSE_LOCATION = 'CHOOSE_LOCATION';
 export const SET_EMPLOYEES = 'SET_EMPLOYEES';
 export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
+export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE';
 export const SET_AUTH_LINK = 'SET_AUTH_LINK';
 
 export const LOG = 'LOG';

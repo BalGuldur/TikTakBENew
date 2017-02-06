@@ -7,6 +7,7 @@ class Employees extends Component {
 
   componentDidMount() {
     this.props.initialUserSubscriptions()
+    this.props.fetchEmployees()
   }
 
   componentWillUnmount() {

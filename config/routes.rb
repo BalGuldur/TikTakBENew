@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  api_version(:module => "V1", :path => {:value => "v1"}, :default => true) do
-  end
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'main#index'
@@ -23,6 +21,7 @@ Rails.application.routes.draw do
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do
     # post 'locations', to: 'locations#create', as: 'create_location'
+    resources :employees, only: [:index]
     resources :locations, only: [:create, :destroy] do
       member do
         get 'choose'

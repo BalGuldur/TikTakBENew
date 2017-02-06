@@ -2,6 +2,7 @@ class Company < ApplicationRecord
   before_save :generate_hash
 
   has_many :locations
+  has_many :employees
 
   private
   def generate_hash

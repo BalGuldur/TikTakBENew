@@ -7,7 +7,7 @@ export function fetchEmployees() {
     console.log ('fetch employees')
 
     fetchDataClean({
-      url: '/employees',
+      url: '/employees/index',
       method: 'GET',
       success: (data) => {
         console.log('success fetch employees')

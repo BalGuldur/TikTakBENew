@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do
     # post 'locations', to: 'locations#create', as: 'create_location'
-    resources :locations, only: [:create, :destroy]
+    resources :locations, only: [:create, :destroy] do
+      member do
+        get 'choose'
+      end
+    end
     get 'faye_test_message', to: 'tests#faye_test_message', as: 'faye_test_message'
   end
 

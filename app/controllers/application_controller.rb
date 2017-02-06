@@ -50,6 +50,14 @@ class ApplicationController < ActionController::Base
     configure_current_tenant
   end
 
+  def current_location
+    Location.find_by(loc_hash: session[:current_location_hash])
+  end
+
+  def set_current_location location
+    session[:current_location_hash] = location.loc_hash
+  end
+
   def configure_current_tenant
     if session[:current_company_hash].present?
       company = Company.find_by(comp_hash: session[:current_company_hash])

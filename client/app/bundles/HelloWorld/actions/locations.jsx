@@ -5,9 +5,20 @@ import { fetchData, fetchDataClean } from './helpers'
 
 export function chooseLocation(location) {
   return (dispatch) => {
-    dispatch({type: types.CHOOSE_LOCATION, location})
-    console.log('after choose location')
-    browserHistory.push('/')
+    console.log('choose location try')
+
+    fetchDataClean({
+      url: '/locations/'+location.id+'/choose',
+      method: 'GET',
+      success: (data) => {
+        console.log('choose location id: '+data.id)
+        dispatch({type: types.CHOOSE_LOCATION, data})
+        browserHistory.push('/')
+      },
+      errors: (data) => {
+        console.log('error choose location')
+      },
+    })
   }
 }
 export const removeLocation = (location) => ({

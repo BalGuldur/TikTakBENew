@@ -9,7 +9,7 @@ class V1::EmployeesController < V1::BaseController
     if @employee.save
       # TODO: Сделать бродкаст с новым сотрудником
       auth_link = "#{request.base_url}/users/sign_in?emp_hash=#{@employee.emp_hash}"
-      render json: {employee: @employee.as_json, auth_link: auth_link}, status: :ok
+      render json: {employee: @employee, auth_link: auth_link}, status: :ok
     else
       render json: @employee.errors, status: 400
     end

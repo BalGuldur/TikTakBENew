@@ -70,6 +70,8 @@ function employees(state = '', action) {
   switch (action.type) {
     case types.SET_EMPLOYEES:
       return action.data;
+    case types.ADD_EMPLOYEE:
+      return [...state, action.employee]
     default:
       return state;
   }
@@ -77,7 +79,7 @@ function employees(state = '', action) {
 function auth_link(state = '', action) {
   switch (action.type) {
     case types.SET_AUTH_LINK:
-      return action.data.auth_link
+      return action.auth_link
     default:
       return state;
   }

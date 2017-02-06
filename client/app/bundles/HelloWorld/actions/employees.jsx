@@ -30,7 +30,8 @@ export function createEmployee(employee) {
       data: employee,
       success: (data) => {
         console.log('success create employee')
-        dispatch({type: types.SET_AUTH_LINK, data})
+        dispatch({type: types.SET_AUTH_LINK, auth_link: data.auth_link})
+        dispatch({type: types.ADD_EMPLOYEE, employee: data.employee})
       },
       errors: (data) => {
         console.log('error create employee')

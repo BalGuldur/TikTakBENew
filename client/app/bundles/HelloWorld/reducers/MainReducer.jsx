@@ -74,6 +74,14 @@ function employees(state = '', action) {
       return state;
   }
 }
+function auth_link(state = '', action) {
+  switch (action.type) {
+    case types.SET_AUTH_LINK:
+      return action.data.auth_link
+    default:
+      return state;
+  }
+}
 
 const MainReducer = combineReducers({
   name,
@@ -86,6 +94,7 @@ const MainReducer = combineReducers({
   initial_faye_channels,
   userSubscriptions,
   employees,
+  auth_link,
 });
 
 export default MainReducer;

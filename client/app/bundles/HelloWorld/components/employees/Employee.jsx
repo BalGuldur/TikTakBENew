@@ -15,7 +15,7 @@ class Employee extends Component {
         </div>
         <div className="col-sm-8">
           <h3><strong>{employee.fullname}</strong></h3>
-          <p>{employee.employee_position}</p>
+          <p>{employee.position}</p>
         </div>
         <div className="clearfix"></div>
       </div>

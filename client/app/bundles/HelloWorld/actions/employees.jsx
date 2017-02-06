@@ -19,3 +19,23 @@ export function fetchEmployees() {
     })
   }
 }
+export function createEmployee(employee) {
+  return (dispatch) => {
+    let data = {auth_link: 'test'}
+    console.log('create new employee')
+
+    fetchDataClean({
+      url: '/employees',
+      method: 'POST',
+      data: employee,
+      success: (data) => {
+        console.log('success create employee')
+        dispatch({type: types.SET_AUTH_LINK, data})
+      },
+      errors: (data) => {
+        console.log('error create employee')
+      }
+    })
+
+  }
+}

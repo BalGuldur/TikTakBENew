@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
   acts_as_tenant :company
 
+  before_save :generate_hash
+
   belongs_to :user
   belongs_to :company
 

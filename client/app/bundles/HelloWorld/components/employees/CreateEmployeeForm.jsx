@@ -7,6 +7,7 @@ class CreateEmployeeForm extends Component {
     this.state = {
       newEmployee: {},
       step: 1,
+      buttonsIsDisable: '',
     }
   }
   componentWillUnmount() {
@@ -18,13 +19,21 @@ class CreateEmployeeForm extends Component {
     employee[key] = e.target.value
     this.setState({newEmployee: employee})
   }
-  createEmployee = () => {
-    console.log('create employee: '+this.state.newEmployee)
+  nextStep = () => {
+    this.setState({buttonsIsDisable: 'disabled'})
+    this.props.createEmployee(this.state.newEmployee)
+    this.setState({step: 2})
   }
 
-
-  render = () => {
-    return <form className="form-horizontal">
+  renderButtons = () =>
+    <div className="ibox-content">
+      <div className="form-group pull-right">
+        <button className={"btn btn-default "+this.state.buttonsIsDisable} type="button" onClick={this.props.closeModal}>Отменить</button>
+        <button className={"btn btn-primary "+this.state.buttonsIsDisable} type="button" onClick={this.nextStep}>Пригласить</button>
+      </div>
+    </div>
+  renderForm = () =>
+    <form className="form-horizontal">
       <p>Приглашение сотрудника</p>
       <div className="form-group">
         <div className="col-lg-10">
@@ -33,7 +42,7 @@ class CreateEmployeeForm extends Component {
       </div>
       <div className="form-group">
         <div className="col-lg-10">
-          <input type="text" placeholder="Должность" className="form-control" onChange={this.handleChange.bind(this, 'employee_postion')}/>
+          <input type="text" placeholder="Должность" className="form-control" onChange={this.handleChange.bind(this, 'position')}/>
         </div>
       </div>
       <div className="form-group">
@@ -41,10 +50,31 @@ class CreateEmployeeForm extends Component {
           <input type="email" placeholder="email" className="form-control" onChange={this.handleChange.bind(this, 'email')}/>
         </div>
       </div>
-      <div className="form-group">
-        <button className="btn btn-primary" type="button">Пригласить</button>
-      </div>
+      {this.renderButtons()}
     </form>
+  renderResult = () =>
+    <div>
+      <h3>Сотрудник создан</h3>
+      <p>Ссылка для авторизации сотрудника (действует один раз)</p>
+      <p>{this.props.auth_link}</p>
+      <p>На указанную почту отправлена ссылка для авторизации</p>
+    </div>
+  renderStep = () => {
+    switch (this.state.step) {
+      case 1:
+        return <div>{this.renderForm()}</div>
+        break;
+      case 2:
+        return <div>{this.renderResult()}</div>
+        break;
+      default:
+        this.renderForm()
+    }
+  }
+  render = () => {
+    return <div className="row">
+      {this.renderStep()}
+    </div>
   }
 }
 

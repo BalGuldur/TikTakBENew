@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206132518) do
+ActiveRecord::Schema.define(version: 20170206201841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 20170206132518) do
     t.string   "emp_hash"
     t.string   "nickname"
     t.integer  "company_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "photo"
-    t.string   "employee_position"
+    t.string   "email"
     t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
     t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end

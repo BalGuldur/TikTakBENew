@@ -50,7 +50,7 @@ class Employees extends Component {
         isOpen={this.state.modalIsOpen}
         emptyFooter="true"
       >
-        <CreateEmployeeForm />
+        <CreateEmployeeForm {...this.props}/>
       </MyModal>
       <div className="wrapper wrapper-content animated fadeInRight">
         <div className="ibox">

@@ -19,3 +19,7 @@
  *= require react-bootstrap-modal/rbm-patch
  *= require_self
  */
+
+.wrapper-content {
+    padding: 20px 10px 10px;
+}

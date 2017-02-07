@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MyModal from '../base_elements/MyModal'
 import EditHallForm from './EditHallForm'
+import Places from './Places'
 
 class Hall extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Hall extends Component {
         onClick={this.editHall}
       ></i>
     </div>
+  renderPlaces = () => <Places {...this.props} />
   render = () => {
     let hall = this.props.hall
 
@@ -55,7 +57,7 @@ class Hall extends Component {
           </div>
         </div>
         <div className="ibox-content">
-          <div>Places</div>
+          {this.renderPlaces()}
         </div>
       </div>
     </div>

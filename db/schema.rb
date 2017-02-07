@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207084146) do
+ActiveRecord::Schema.define(version: 20170207123729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20170207084146) do
     t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end
 
+  create_table "halls", force: :cascade do |t|
+    t.integer  "location_id"
+    t.string   "title"
+    t.boolean  "deleted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_halls_on_location_id", using: :btree
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "title"
     t.boolean  "deleted"
@@ -69,6 +78,16 @@ ActiveRecord::Schema.define(version: 20170207084146) do
     t.datetime "updated_at", null: false
     t.string   "photo"
     t.index ["user_id"], name: "index_omni_auth_accounts_on_user_id", using: :btree
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "hall_id"
+    t.integer  "capacity"
+    t.boolean  "deleted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hall_id"], name: "index_places_on_hall_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,6 +112,8 @@ ActiveRecord::Schema.define(version: 20170207084146) do
   add_foreign_key "action_logs", "employees"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
+  add_foreign_key "halls", "locations"
   add_foreign_key "locations", "companies"
   add_foreign_key "omni_auth_accounts", "users"
+  add_foreign_key "places", "halls"
 end

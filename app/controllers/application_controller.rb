@@ -78,4 +78,10 @@ class ApplicationController < ActionController::Base
       raise "Error with tenant on application_controller"
     end
   end
+
+  def check_current_location
+    if current_location.blank?
+      raise "Not set current location"
+    end
+  end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  hall: one
+  capacity: 1
+  deleted: false
+
+two:
+  title: MyString
+  hall: two
+  capacity: 1
+  deleted: false

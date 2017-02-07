@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'test', to: 'main#index'
   get 'locations', to: 'main#index'
   get 'employees', to: 'main#index'
+  get 'halls_control', to: 'main#index'
 
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do
@@ -30,6 +31,16 @@ Rails.application.routes.draw do
     resources :locations, only: [:create, :destroy] do
       member do
         get 'choose'
+      end
+    end
+    resources :halls, only: [:create, :destroy] do
+      collection do
+        get 'index', as: 'halls'
+      end
+    end
+    resources :places, only: [:create, :destroy] do
+      collection do
+        get 'index', as: 'places'
       end
     end
     get 'faye_test_message', to: 'tests#faye_test_message', as: 'faye_test_message'

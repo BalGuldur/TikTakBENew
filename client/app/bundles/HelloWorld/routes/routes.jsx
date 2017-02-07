@@ -6,6 +6,7 @@ import Test from '../containers/TestContainer'
 import Main from '../containers/MainContainer'
 import Locations from '../containers/LocationsContainer'
 import Employees from '../containers/EmployeesContainer'
+import Halls from '../containers/HallsContainer'
 
 
 export default (
@@ -14,5 +15,6 @@ export default (
     <Route path="test" component={Test}/>
     <Route path="locations" component={Locations}/>
     <Route path="employees" component={Employees}/>
+    <Route path="halls_control" component={Halls}/>
   </Route>
 );

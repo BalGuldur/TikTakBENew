@@ -44,7 +44,7 @@ class Employees extends Component {
     }
   }
   render = () => {
-    return <div id="employees" className="employees">
+    return <div id="employees">
       <MyModal
         header="Приглашение сотрудника"
         closeModal={this.closeModal}

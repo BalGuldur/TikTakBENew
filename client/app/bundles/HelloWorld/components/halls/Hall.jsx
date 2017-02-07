@@ -5,8 +5,20 @@ class Hall extends Component {
     super(props)
   }
 
-  render = () =>
-    <div>Test Hall {this.props.hall.id}</div>
+  render = () => {
+    let hall = this.props.hall
+
+    return <div className="col-lg-4">
+      <div className="ibox">
+        <div className="ibox-title">
+          <div>{hall.title}</div>
+        </div>
+        <div className="ibox-content">
+          <div>Places</div>
+        </div>
+      </div>
+    </div>
+  }
 }
 
 export default Hall

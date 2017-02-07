@@ -24,7 +24,7 @@ class CreateHallForm extends Component {
     this.setState({buttonsIsDisable: 'disabled'})
     this.props.createHall(this.state.newHall)
     this.setState({buttonsIsDisable: ''})
-    this.props.closeModal
+    this.props.closeModal()
   }
 
   renderButtons = () =>

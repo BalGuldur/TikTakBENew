@@ -91,7 +91,7 @@ function halls(state = '', action) {
     case types.SET_HALLS:
       return action.data;
     case types.ADD_HALL:
-      return [...state, action.data]
+      return Object.assign({}, state, action.data)
     default:
       return state;
   }

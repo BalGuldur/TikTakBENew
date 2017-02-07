@@ -5,6 +5,6 @@ class Hall < ApplicationRecord
   has_many :places
 
   def self.front_view
-    self.as_json(methods: [:place_ids])
+    all.as_json(methods: [:place_ids])
   end
 end

@@ -25,7 +25,7 @@ const current_company = (state = '', action) => {
 const current_location = (state = '', action) => {
   switch (action.type) {
     case types.CHOOSE_LOCATION:
-      return action.location
+      return action.data
     default:
       return state;
   }
@@ -86,6 +86,18 @@ function auth_link(state = '', action) {
       return state;
   }
 }
+function halls(state = '', action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+function places(state = '', action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
 
 const MainReducer = combineReducers({
   name,
@@ -99,6 +111,8 @@ const MainReducer = combineReducers({
   userSubscriptions,
   employees,
   auth_link,
+  halls,
+  places,
 });
 
 export default MainReducer;

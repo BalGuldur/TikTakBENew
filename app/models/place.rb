@@ -4,6 +4,6 @@ class Place < ApplicationRecord
   belongs_to :hall
 
   def self.front_view
-    self.as_json
+    all.as_json
   end
 end

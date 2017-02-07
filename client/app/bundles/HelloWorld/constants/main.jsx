@@ -9,5 +9,7 @@ export const SET_EMPLOYEES = 'SET_EMPLOYEES';
 export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
 export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE';
 export const SET_AUTH_LINK = 'SET_AUTH_LINK';
+export const SET_HALLS = 'SET_HALLS';
+export const SET_PLACES = 'SET_PLACES';
 
 export const LOG = 'LOG';

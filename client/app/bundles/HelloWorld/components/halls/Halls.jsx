@@ -7,6 +7,8 @@ class Halls extends Component {
   }
   componentWillMount() {
     console.log('halls will mount')
+    this.props.fetchHalls()
+    this.props.fetchPlaces()
     // this.props.fetchEmployees()
   }
   componentDidMount() {

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206214728) do
+ActiveRecord::Schema.define(version: 20170207084146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_logs", force: :cascade do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.integer  "employee_id"
+    t.text     "parameters"
+    t.boolean  "success"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_action_logs_on_company_id", using: :btree
+    t.index ["employee_id"], name: "index_action_logs_on_employee_id", using: :btree
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "comp_hash"
@@ -76,6 +89,8 @@ ActiveRecord::Schema.define(version: 20170206214728) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "action_logs", "companies"
+  add_foreign_key "action_logs", "employees"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
   add_foreign_key "locations", "companies"

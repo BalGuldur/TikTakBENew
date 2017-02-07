@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :emp_hash_params
   before_action :check_auth, unless: :devise_controller?
-  before_action :check_many_companies
+  before_action :check_many_companies, unless: :devise_controller?
   before_action :check_current_tenant, unless: :devise_controller?
 
   def broadcast(channel, message)
@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
           raise "Нет сотрудников у пользователя"
         when current_user.employees.count == 1
           set_current_company current_user.employees.first.company
+          set_current_employee current_user.employees.first
         when (current_user.employees.count > 1 and current_company.blank?)
           puts "current_company #{current_company.as_json}"
           redirect_to select_company_path
@@ -42,28 +43,33 @@ class ApplicationController < ActionController::Base
   end
 
   def current_company
-    Company.find_by(comp_hash: session[:current_company_hash])
+    @_current_company ||= session[:current_company_id] && Company.find_by_id(session[:current_company_id])
+    # Company.find_by(comp_hash: session[:current_company_hash])
   end
 
   def set_current_company company
-    session[:current_company_hash] = company.comp_hash
-    configure_current_tenant
+    session[:current_company_id] = company && company.id
   end
 
   def current_location
-    Location.find_by(loc_hash: session[:current_location_hash])
+    @_current_location ||= session[:current_location_id] && Location.find_by_id(session[:current_location_id])
   end
 
   def set_current_location location
-    session[:current_location_hash] = location.loc_hash
+    session[:current_location_id] = location && location.id
+  end
+
+  def current_employee
+    @_current_employee ||= session[:current_employee_id] && Employee.find_by_id(session[:current_employee_id])
+  end
+
+  def set_current_employee employee
+    session[:current_employe_id] = employee && employee.id
   end
 
   def configure_current_tenant
-    if session[:current_company_hash].present?
-      company = Company.find_by(comp_hash: session[:current_company_hash])
-      if company.present?
-        set_current_tenant(company)
-      end
+    if current_company.present?
+      set_current_tenant current_company
     end
   end
 

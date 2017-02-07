@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  controller: MyString
+  action: MyString
+  employee: one
+  parameters: MyText
+  success: false
+
+two:
+  controller: MyString
+  action: MyString
+  employee: two
+  parameters: MyText
+  success: false

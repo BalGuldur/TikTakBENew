@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   root to: 'main#index'
 
   get 'main', to: 'main#index'
+  get 'logout', to: 'main#logout'
 
   devise_scope :user do
-    get 'logout', to: 'devise/sessions#destroy'
+    get 'sign_out', to: 'devise/sessions#destroy'
   end
 
   get 'select_company', to: 'main#select_company', as: 'select_company'

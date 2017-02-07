@@ -19,3 +19,21 @@ export function fetchHalls() {
     })
   }
 }
+export function createHall(hall) {
+  return (dispatch) => {
+    console.log('create new hall')
+
+    fetchDataClean({
+      url: '/halls',
+      method: 'POST',
+      data: hall,
+      success: (data) => {
+        console.log('success create hall')
+        dispatch({type: types.ADD_HALL, data})
+      },
+      errors: (data) => {
+        console.log('error create employee')
+      }
+    })
+  }
+}

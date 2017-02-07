@@ -7,4 +7,8 @@ class Hall < ApplicationRecord
   def self.front_view
     all.as_json(methods: [:place_ids])
   end
+
+  def front_view
+    as_json(methods: [:place_ids])
+  end
 end

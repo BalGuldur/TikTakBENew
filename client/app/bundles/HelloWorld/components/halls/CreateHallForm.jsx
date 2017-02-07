@@ -20,9 +20,11 @@ class CreateHallForm extends Component {
     this.setState({newHall: hall})
   }
   submitForm = () => {
+    console.log('try create hall')
     this.setState({buttonsIsDisable: 'disabled'})
-    // this.props.createHall(this.state.newHall)
+    this.props.createHall(this.state.newHall)
     this.setState({buttonsIsDisable: ''})
+    this.props.closeModal
   }
 
   renderButtons = () =>

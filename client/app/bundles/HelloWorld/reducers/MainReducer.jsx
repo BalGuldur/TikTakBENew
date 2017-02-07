@@ -89,7 +89,9 @@ function auth_link(state = '', action) {
 function halls(state = '', action) {
   switch (action.type) {
     case types.SET_HALLS:
-      return action.data
+      return action.data;
+    case types.ADD_HALL:
+      return [...state, action.data]
     default:
       return state;
   }

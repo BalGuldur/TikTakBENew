@@ -35,7 +35,7 @@ class Halls extends Component {
   }
 
   renderHall = (hall) =>
-    <Hall key={hall.id} hall={hall} {...props} />
+    <Hall key={hall.id} hall={hall} {...this.props} />
   renderHalls = () => {
     if (this.props.halls == '') {
       return <div className="row">Нет залов</div>

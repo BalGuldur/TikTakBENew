@@ -33,12 +33,12 @@ Rails.application.routes.draw do
         get 'choose'
       end
     end
-    resources :halls, only: [:create, :destroy] do
+    resources :halls, only: [:create, :destroy, :update] do
       collection do
         get 'index', as: 'halls'
       end
     end
-    resources :places, only: [:create, :destroy] do
+    resources :places, only: [:create, :destroy, :update] do
       collection do
         get 'index', as: 'places'
       end

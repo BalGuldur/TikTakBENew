@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
+import MyModal from '../base_elements/MyModal'
+import EditHallForm from './EditHallForm'
 
 class Hall extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      editModalIsOpen: false,
+    }
   }
 
+  closeModal = () => { this.setState({editModalIsOpen: false}) }
+  openModal = () => { this.setState({editModalIsOpen: true})}
   editHall = () => {
     console.log('edit Hall')
+    this.openModal()
   }
   deleteHall = () => {
     console.log('delete Hall')
@@ -28,6 +37,14 @@ class Hall extends Component {
     let hall = this.props.hall
 
     return <div className="col-md-6 col-lg-4">
+      <MyModal
+        header="Редактирование Зала"
+        isOpen={this.state.editModalIsOpen}
+        closeModal={this.closeModal}
+        emptyFooter="true"
+      >
+        <EditHallForm {...this.props} closeModal={this.closeModal} />
+      </MyModal>
       <div className="ibox">
         <div className="ibox-title">
           <div className="row">

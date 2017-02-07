@@ -55,4 +55,22 @@ export function deleteHall(hall) {
     })
   }
 }
+export function editHall(hall) {
+  return (dispatch) => {
+    console.log('edit hall action')
+    console.log(hall)
+
+    fetchDataClean({
+      url: '/halls/'+hall.id,
+      method: 'PUT',
+      data: hall,
+      success: (data) => {
+        console.log('success edit hall')
+      },
+      errors: (data) => {
+        console.log('error edit hall')
+      }
+    })
+  }
+}
 

@@ -36,6 +36,16 @@ class V1::HallsController < V1::BaseController
     end
   end
 
+  def update
+    if @hall.update hall_params
+      success_action
+      render json: @hall.front_view, status: :ok
+    else
+      error_action
+      render json: @hall.errors, status: 400
+    end
+  end
+
   private
 
   def set_hall

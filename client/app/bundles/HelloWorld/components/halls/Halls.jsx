@@ -34,15 +34,21 @@ class Halls extends Component {
     })
   }
 
-  renderHall = (hall) =>
-    <Hall key={hall.id} hall={hall} {...this.props} />
+  renderHall = (key, element) =>
+    <Hall key={key} hall={this.props.halls[key]} {...this.props} />
+  // renderHalls = () => {
+  //   if (this.props.halls == '') {
+  //     return <div className="row">Нет залов</div>
+  //   } else {
+  //     return <div className="row">
+  //         {Object.keys(this.props.halls).map(this.renderHall.bind())}
+  //       </div>
+  //   }
+  // }
   renderHalls = () => {
-    if (this.props.halls == '') {
-      return <div className="row">Нет залов</div>
-    } else {
-      return <div className="row">{this.props.halls.map(this.renderHall)}</div>
-      // this.props.employees.map(this.renderEmployee)
-    }
+    return <div className="row">
+      {Object.keys(this.props.halls || {}).map(this.renderHall)}
+    </div>
   }
   render = () => {
     return <div id="halls">

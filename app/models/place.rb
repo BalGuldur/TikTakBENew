@@ -4,6 +4,18 @@ class Place < ApplicationRecord
   belongs_to :hall
 
   def self.front_view
-    all.as_json
+    # TODO: Проверить количество SQL запросов
+    places = all
+    result = {}
+    places.each {|place| result.merge! place.front_view}
+    result
   end
+
+  def front_view
+    {self.id => self.as_json}
+  end
+
+  # def self.front_view
+  #   all.as_json
+  # end
 end

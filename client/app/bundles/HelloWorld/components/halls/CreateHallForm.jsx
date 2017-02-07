@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EmployeeForm from '../employees/_EmployeeForm'
+import HallForm from './_HallForm'
 
 class CreateHallForm extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class CreateHallForm extends Component {
     </div>
   renderForm = () =>
     <form className="form-horizontal">
-      <EmployeeForm handleChange={this.handleChange} {...this.state.newHall}/>
+      <HallForm handleChange={this.handleChange} {...this.state.newHall}/>
       {this.renderButtons()}
     </form>
   render = () => {

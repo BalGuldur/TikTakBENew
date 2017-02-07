@@ -56,3 +56,21 @@ export function deleteEmployee(employee) {
     })
   }
 }
+export function editEmployee(employee) {
+  return (dispatch) => {
+    console.log('edit employee action')
+    console.log(employee)
+
+    fetchDataClean({
+      url: '/employees/'+employee.id,
+      method: 'PUT',
+      data: employee,
+      success: (data) => {
+        console.log('success edit employee')
+      },
+      errors: (data) => {
+        console.log('error edit employee')
+      }
+    })
+  }
+}

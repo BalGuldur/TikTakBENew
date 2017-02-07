@@ -25,6 +25,7 @@ class MainController < ApplicationController
   def select_company
     @current_user = current_user
     @companies = current_user.companies
+    @employees = current_user.employees
   end
 
   def choose_company

@@ -1,4 +1,4 @@
 div Choose you company
-- @companies.each do |company|
+- @employees.each do |employee|
   div
-    = link_to company.title, choose_company_path(comp_hash: company.comp_hash)
+    = link_to "#{employee.company.title} #{employee.fullname}", choose_company_path(comp_hash: employee.company.comp_hash)

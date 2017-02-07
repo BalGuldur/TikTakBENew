@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do
     # post 'locations', to: 'locations#create', as: 'create_location'
-    resources :employees, only: [:create, :destroy] do
+    resources :employees, only: [:create, :destroy, :update] do
       collection do
         get 'index', as: 'employees'
       end

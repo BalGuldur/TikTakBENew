@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EmployeeForm from './_EmployeeForm'
 
 class CreateEmployeeForm extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class CreateEmployeeForm extends Component {
   nextStep = () => {
     this.setState({buttonsIsDisable: 'disabled'})
     this.props.createEmployee(this.state.newEmployee)
+    this.setState({buttonsIsDisable: ''})
     this.setState({step: 2})
   }
 
@@ -34,22 +36,7 @@ class CreateEmployeeForm extends Component {
     </div>
   renderForm = () =>
     <form className="form-horizontal">
-      <p>Приглашение сотрудника</p>
-      <div className="form-group">
-        <div className="col-lg-10">
-          <input type="text" placeholder="Полное имя" className="form-control" onChange={this.handleChange.bind(this, 'fullname')}/>
-        </div>
-      </div>
-      <div className="form-group">
-        <div className="col-lg-10">
-          <input type="text" placeholder="Должность" className="form-control" onChange={this.handleChange.bind(this, 'position')}/>
-        </div>
-      </div>
-      <div className="form-group">
-        <div className="col-lg-10">
-          <input type="email" placeholder="email" className="form-control" onChange={this.handleChange.bind(this, 'email')}/>
-        </div>
-      </div>
+      <EmployeeForm handleChange={this.handleChange} {...this.state.newEmployee}/>
       {this.renderButtons()}
     </form>
   renderResult = () =>

@@ -12,6 +12,7 @@ class Employees extends Component {
     }
   }
   componentWillMount() {
+    console.log('employees will mount')
     this.props.fetchEmployees()
   }
   componentDidMount() {
@@ -45,12 +46,12 @@ class Employees extends Component {
   render = () => {
     return <div id="employees" className="employees">
       <MyModal
-        header="Сотрудник"
+        header="Приглашение сотрудника"
         closeModal={this.closeModal}
         isOpen={this.state.modalIsOpen}
         emptyFooter="true"
       >
-        <CreateEmployeeForm {...this.props}/>
+        <CreateEmployeeForm {...this.props} closeModal={this.closeModal}/>
       </MyModal>
       <div className="wrapper wrapper-content animated fadeInRight">
         <div className="ibox">

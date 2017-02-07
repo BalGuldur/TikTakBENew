@@ -1,5 +1,5 @@
 class V1::EmployeesController < V1::BaseController
-  before_action :set_employee, only: [:destroy]
+  before_action :set_employee, only: [:destroy, :update]
 
   def index
     @employees = current_company.employees
@@ -27,6 +27,14 @@ class V1::EmployeesController < V1::BaseController
       render json: @employee, status: :ok
     else
       redner json: @employee.errors, status: 400
+    end
+  end
+
+  def update
+    if @employee.update employee_params
+      render json: @employee, status: :ok
+    else
+      render json: @employee.errors, status: 400
     end
   end
 

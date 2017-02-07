@@ -88,12 +88,16 @@ function auth_link(state = '', action) {
 }
 function halls(state = '', action) {
   switch (action.type) {
+    case types.SET_HALLS:
+      return action.data
     default:
       return state;
   }
 }
 function places(state = '', action) {
   switch (action.type) {
+    case types.SET_PLACES:
+      return action.data
     default:
       return state;
   }

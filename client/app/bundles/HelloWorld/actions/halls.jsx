@@ -37,3 +37,22 @@ export function createHall(hall) {
     })
   }
 }
+export function deleteHall(hall) {
+  return (dispatch) => {
+    console.log('delete hall')
+    console.log(hall)
+
+    fetchDataClean({
+      url: '/halls/'+hall.id,
+      method: 'DELETE',
+      success: (data) => {
+        console.log('success delete hall')
+        dispatch({type: types.DELETE_HALL, data})
+      },
+      errors: (data) => {
+        console.log('error delete employee')
+      }
+    })
+  }
+}
+

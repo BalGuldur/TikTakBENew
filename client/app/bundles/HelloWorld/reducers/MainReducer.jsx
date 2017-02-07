@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 // import { MAIN_NAME_UPDATE } from '../constants/main';
 import * as types from '../constants/main'
+import * as baseActions from './base_reduce_actions'
 
 const name = (state = '', action) => {
   switch (action.type) {
@@ -92,6 +93,8 @@ function halls(state = '', action) {
       return action.data;
     case types.ADD_HALL:
       return Object.assign({}, state, action.data)
+    case types.DELETE_HALL:
+      return baseActions.deleteElement(state, Object.keys(action.data)[0])
     default:
       return state;
   }
@@ -104,6 +107,8 @@ function places(state = '', action) {
       return state;
   }
 }
+// Object.assign({}, state, action.data)
+// {...state, hall}
 
 const MainReducer = combineReducers({
   name,

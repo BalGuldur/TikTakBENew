@@ -12,5 +12,6 @@ export const SET_AUTH_LINK = 'SET_AUTH_LINK';
 export const SET_HALLS = 'SET_HALLS';
 export const SET_PLACES = 'SET_PLACES';
 export const ADD_HALL = 'ADD_HALL';
+export const DELETE_HALL = 'DELETE_HALL';
 
 export const LOG = 'LOG';

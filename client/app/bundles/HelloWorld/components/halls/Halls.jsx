@@ -36,15 +36,6 @@ class Halls extends Component {
 
   renderHall = (key, element) =>
     <Hall key={key} hall={this.props.halls[key]} {...this.props} />
-  // renderHalls = () => {
-  //   if (this.props.halls == '') {
-  //     return <div className="row">Нет залов</div>
-  //   } else {
-  //     return <div className="row">
-  //         {Object.keys(this.props.halls).map(this.renderHall.bind())}
-  //       </div>
-  //   }
-  // }
   renderHalls = () => {
     return <div className="row">
       {Object.keys(this.props.halls || {}).map(this.renderHall)}

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'locations', to: 'main#index'
   get 'employees', to: 'main#index'
   get 'halls_control', to: 'main#index'
+  get 'menu_control', to: 'main#index'
 
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do

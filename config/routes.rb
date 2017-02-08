@@ -22,8 +22,12 @@ Rails.application.routes.draw do
   get 'menu_control', to: 'main#index'
 
   # Внутренние ссылки API
-  api_version(module: "V1", path: {value: "v1"}, default: true) do
+  api_version(module: "V1", path: {value: "v1"}, default: true) do # RuboCop::Disable Metrics/BlockLength
+    resources :menu_departments, only: [:create, :destroy, :update] do
+      get 'index', on: :collection
+    end
     # post 'locations', to: 'locations#create', as: 'create_location'
+    # TODO: change routes to get 'route', on: :collection
     resources :employees, only: [:create, :destroy, :update] do
       collection do
         get 'index', as: 'employees'

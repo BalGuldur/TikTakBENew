@@ -2,7 +2,12 @@
 
 import { fetchData, fetchDataClean } from './helpers'
 
-export function testLog(obj) {
+export function testLog() {
+  return (dispatch) => {
+    console.log('Test log action')
+  }
+}
+export function testLogObj(obj) {
   return (dispatch) => {
     console.log('Test log ' + obj )
   }

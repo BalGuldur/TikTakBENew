@@ -5,8 +5,11 @@ class MenuDepartment extends Component {
     super(props)
   }
 
+  // testLog = () => {this.props.actions.testLog)}
   render = () => {
-    <div>{this.props.menu_department.title}</div>
+    return <div className="col-md-3">
+      <div onClick={this.testLog}>{this.props.title}</div>
+    </div>
   }
 }
 

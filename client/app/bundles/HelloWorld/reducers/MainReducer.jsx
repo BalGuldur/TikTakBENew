@@ -136,6 +136,8 @@ function places(state = '', action) {
 }
 function menu_departments(state = '', action) {
   switch (action.type) {
+    case types.SET_MENU_DEPARTMENTS:
+      return action.menu_departments
     default:
       return state;
   }
@@ -158,6 +160,7 @@ const MainReducer = combineReducers({
   halls,
   halls_to_places,
   places,
+  menu_departments,
 });
 
 export default MainReducer;

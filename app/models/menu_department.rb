@@ -18,11 +18,11 @@ class MenuDepartment < ApplicationRecord
   end
 
   def front_view_with_key
-    {id => as.json}
+    { id => as_json }
   end
 
   def front_view
-    as.json
+    as_json
   end
 
   private

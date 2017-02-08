@@ -20,3 +20,21 @@ export function fetchMenuDepartments() {
     })
   }
 }
+export function createDepartment(department) {
+  return (dispatch) => {
+    console.log('create new department')
+
+    fetchDataClean({
+      url: '/menu_departments',
+      method: 'POST',
+      data: department,
+      success: (data) => {
+        console.log('success create department')
+        dispatch({type: types.ADD_MENU_DEPARTMENT, data})
+      },
+      errors: (data) => {
+        console.log('error create department')
+      }
+    })
+  }
+}

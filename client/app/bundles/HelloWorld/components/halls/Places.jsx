@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-// import Hall from './Hall'
 import MyModal from '../base_elements/MyModal'
 import PlaceForm from './PlaceForm'
 import Place from './Place'
-// import CreateHallForm from './CreateHallForm'
+import * as lib from '../../lib'
 
 class Places extends Component {
   constructor(props) {
@@ -29,7 +28,8 @@ class Places extends Component {
     <Place key={key} place={this.props.places[key]} {...this.props} />
   renderPlaces = () => {
     return <div id="places">
-      {Object.keys(this.props.places || {}).map(this.renderPlace)}
+      {/*{Object.keys(this.props.places || {}).map(this.renderPlace)}*/}
+      <div>Places</div>
     </div>
   }
   render = () => {

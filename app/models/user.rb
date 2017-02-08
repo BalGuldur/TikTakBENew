@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:vkontakte]
 
-  acts_as_paranoid column: :deleted, sentinel_value: false
+  acts_as_paranoid without_default_scope: true, column: :deleted, sentinel_value: false
 
   has_many :omni_auth_accounts, dependent: :destroy
   has_many :employees

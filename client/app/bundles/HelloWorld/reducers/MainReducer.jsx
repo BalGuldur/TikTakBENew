@@ -95,6 +95,18 @@ function halls(state = '', action) {
       return Object.assign({}, state, action.data)
     case types.DELETE_HALL:
       return baseActions.deleteElement(state, Object.keys(action.data)[0])
+    // case types.ADD_PLACE:
+    //   let place_id = Object.keys(action.data)[0]
+    //   let hall_id = action.data[key].hall_id
+    //   console.log(hall_id)
+    //   let hall = state[hall_id]
+    //   console.log(hall)
+    //   // hall['place_ids'] = [...hall['place_ids'], place_id]
+    //   let hall = {...state[hall_id], {'place_ids': [...state[hall_id]['place_ids'], place_id]}}
+    //   let result = {}
+    //   result[hall_id] = hall
+    //   console.log(result)
+    //   return Object.assign({}, state, result)
     default:
       return state;
   }
@@ -108,7 +120,7 @@ function places(state = '', action) {
     case types.DELETE_PLACE:
       return baseActions.deleteElement(state, Object.keys(action.data)[0])
     case types.EDIT_PLACE:
-      var element = action.data
+      let element = action.data
       return Object.assign({}, state, element)
     default:
       return state;

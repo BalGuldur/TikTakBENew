@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:vkontakte]
 
+  acts_as_paranoid column: :deleted, sentinel_value: false
+
   has_many :omni_auth_accounts, dependent: :destroy
   has_many :employees
   has_many :companies, through: :employees
@@ -30,5 +32,21 @@ class User < ApplicationRecord
       end
     end
     result
+  end
+
+  private
+
+  def paranoia_restore_attributes
+    {
+        deleted_at: nil,
+        deleted: false
+    }
+  end
+
+  def paranoia_destroy_attributes
+    {
+        deleted_at: current_time_from_proper_timezone,
+        deleted: true
+    }
   end
 end

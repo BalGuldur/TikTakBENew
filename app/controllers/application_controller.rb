@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   set_current_tenant_through_filter
-  before_filter :configure_current_tenant
+  before_action :configure_current_tenant
 
   before_action :emp_hash_params
   before_action :check_auth, unless: :devise_controller?
@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_employee employee
-    session[:current_employe_id] = employee && employee.id
+    session[:current_employee_id] = employee && employee.id
   end
 
   def configure_current_tenant

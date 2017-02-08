@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207123729) do
+ActiveRecord::Schema.define(version: 20170208022543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 20170207123729) do
     t.string   "photo"
     t.string   "email"
     t.boolean  "deleted"
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
+    t.index ["deleted"], name: "index_employees_on_deleted", using: :btree
     t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end
 
@@ -57,6 +59,8 @@ ActiveRecord::Schema.define(version: 20170207123729) do
     t.boolean  "deleted"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted"], name: "index_halls_on_deleted", using: :btree
     t.index ["location_id"], name: "index_halls_on_location_id", using: :btree
   end
 
@@ -67,7 +71,9 @@ ActiveRecord::Schema.define(version: 20170207123729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "loc_hash"
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_locations_on_company_id", using: :btree
+    t.index ["deleted"], name: "index_locations_on_deleted", using: :btree
   end
 
   create_table "omni_auth_accounts", force: :cascade do |t|
@@ -87,6 +93,8 @@ ActiveRecord::Schema.define(version: 20170207123729) do
     t.boolean  "deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted"], name: "index_places_on_deleted", using: :btree
     t.index ["hall_id"], name: "index_places_on_hall_id", using: :btree
   end
 
@@ -104,6 +112,9 @@ ActiveRecord::Schema.define(version: 20170207123729) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "fullname"
+    t.datetime "deleted_at"
+    t.boolean  "deleted"
+    t.index ["deleted"], name: "index_users_on_deleted", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

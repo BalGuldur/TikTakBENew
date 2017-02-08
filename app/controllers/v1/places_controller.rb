@@ -56,14 +56,10 @@ class V1::PlacesController < V1::BaseController
   end
 
   def success_action
-    # @action_log.success = true
-    # @action_log.save
     @action_log.update success: true
   end
 
   def error_action
-    # @action_log.success = false
-    # @action_log.save
     @action_lod.update success: false
   end
 

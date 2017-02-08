@@ -1,13 +1,14 @@
 class Location < ApplicationRecord
-  default_scope { where(deleted: false)}
-
   acts_as_tenant :company
+  acts_as_paranoid column: :deleted, sentinel_value: false
 
   before_save :set_default
 
   belongs_to :company
-  has_many :halls
+  has_many :halls, dependent: :destroy
   has_many :places, through: :halls
+  has_many :employees
+  has_many :action_logs, through: :employees
 
   private
 
@@ -18,5 +19,19 @@ class Location < ApplicationRecord
     if loc_hash.nil?
       update loc_hash: SecureRandom.urlsafe_base64(20)
     end
+  end
+
+  def paranoia_restore_attributes
+    {
+        deleted_at: nil,
+        deleted: false
+    }
+  end
+
+  def paranoia_destroy_attributes
+    {
+        deleted_at: current_time_from_proper_timezone,
+        deleted: true
+    }
   end
 end

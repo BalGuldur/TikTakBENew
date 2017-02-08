@@ -1,8 +1,8 @@
 class Hall < ApplicationRecord
-  default_scope { where(deleted: false) }
+  acts_as_paranoid column: :deleted, sentinel_value: false
 
   belongs_to :location
-  has_many :places
+  has_many :places, dependent: :destroy
 
   def self.front_view
     halls = all.includes(:places)
@@ -15,11 +15,19 @@ class Hall < ApplicationRecord
     {self.id => self.as_json(methods: [:place_ids])}
   end
 
-  # def self.front_view
-  #   all.as_json(methods: [:place_ids])
-  # end
-  #
-  # def front_view
-  #   as_json(methods: [:place_ids])
-  # end
+  private
+
+  def paranoia_restore_attributes
+    {
+        deleted_at: nil,
+        deleted: false
+    }
+  end
+
+  def paranoia_destroy_attributes
+    {
+        deleted_at: current_time_from_proper_timezone,
+        deleted: true
+    }
+  end
 end

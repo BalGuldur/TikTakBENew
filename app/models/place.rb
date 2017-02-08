@@ -1,5 +1,7 @@
 class Place < ApplicationRecord
-  default_scope { where(deleted: false) }
+  acts_as_paranoid column: :deleted, sentinel_value: false
+
+  # default_scope { where(deleted: false) }
 
   belongs_to :hall
 
@@ -19,7 +21,19 @@ class Place < ApplicationRecord
     destroy
   end
 
-  # def self.front_view
-  #   all.as_json
-  # end
+  private
+
+  def paranoia_restore_attributes
+    {
+        deleted_at: nil,
+        deleted: false
+    }
+  end
+
+  def paranoia_destroy_attributes
+    {
+        deleted_at: current_time_from_proper_timezone,
+        deleted: true
+    }
+  end
 end

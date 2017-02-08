@@ -134,6 +134,12 @@ function places(state = '', action) {
       return state;
   }
 }
+function menu_departments(state = '', action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
 // Object.assign({}, state, action.data)
 // {...state, hall}
 

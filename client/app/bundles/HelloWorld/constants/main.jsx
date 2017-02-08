@@ -13,5 +13,8 @@ export const SET_HALLS = 'SET_HALLS';
 export const SET_PLACES = 'SET_PLACES';
 export const ADD_HALL = 'ADD_HALL';
 export const DELETE_HALL = 'DELETE_HALL';
+export const ADD_PLACE = 'ADD_PLACE';
+export const DELETE_PLACE = 'DELETE_PLACE';
+export const EDIT_PLACE = 'EDIT_PLACE';
 
 export const LOG = 'LOG';

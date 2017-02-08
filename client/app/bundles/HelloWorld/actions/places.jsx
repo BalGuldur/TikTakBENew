@@ -19,3 +19,59 @@ export function fetchPlaces() {
     })
   }
 }
+export function createPlace(place) {
+  return (dispatch) => {
+    console.log('create new place')
+
+    fetchDataClean({
+      url: '/places',
+      method: 'POST',
+      data: place,
+      success: (data) => {
+        console.log('success create place')
+        dispatch({type: types.ADD_PLACE, data})
+      },
+      errors: (data) => {
+        console.log('error create employee')
+      }
+    })
+  }
+}
+export function deletePlace(place) {
+  return (dispatch) => {
+    console.log('delete place')
+    console.log(place)
+
+    fetchDataClean({
+      url: '/places/'+place.id,
+      method: 'DELETE',
+      success: (data) => {
+        console.log('success delete place')
+        dispatch({type: types.DELETE_PLACE, data})
+      },
+      errors: (data) => {
+        console.log('error delete employee')
+      }
+    })
+  }
+}
+export function editPlace(place) {
+  return (dispatch) => {
+    console.log('edit place action')
+    console.log(place)
+
+    fetchDataClean({
+      url: '/places/'+place.id,
+      method: 'PUT',
+      data: place,
+      success: (data) => {
+        console.log('success edit place')
+        dispatch({type: types.EDIT_PLACE, data})
+      },
+      errors: (data) => {
+        console.log('error edit place')
+      }
+    })
+  }
+}
+

@@ -103,6 +103,13 @@ function places(state = '', action) {
   switch (action.type) {
     case types.SET_PLACES:
       return action.data
+    case types.ADD_PLACE:
+      return Object.assign({}, state, action.data)
+    case types.DELETE_PLACE:
+      return baseActions.deleteElement(state, Object.keys(action.data)[0])
+    case types.EDIT_PLACE:
+      var element = action.data
+      return Object.assign({}, state, element)
     default:
       return state;
   }

@@ -12,12 +12,13 @@ class PlaceForm extends Component {
   }
 
   handleChange = (key, e) => {
-    let element = this.state.editedElement
+    let element = {}
     element[key] = e.target.value
-    this.setState({editedElement: element})
+    this.setState({editedElement: Object.assign({}, this.state.editedElement, element)})
+    // this.setState({editedElement: element})
   }
   submitForm = () => {
-    console.log('try create element')
+    console.log('try create or edit element')
     this.setState({buttonsIsDisable: 'disabled'})
     this.props.handleSubmit(this.state.editedElement)
     this.setState({buttonsIsDisable: ''})

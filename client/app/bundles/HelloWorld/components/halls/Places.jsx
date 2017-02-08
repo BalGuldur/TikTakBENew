@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 // import Hall from './Hall'
 import MyModal from '../base_elements/MyModal'
 import PlaceForm from './PlaceForm'
+import Place from './Place'
 // import CreateHallForm from './CreateHallForm'
 
 class Places extends Component {
@@ -16,8 +17,6 @@ class Places extends Component {
   closeModal = () => { this.setState({modalPlaceIsOpen: false}) }
   openModal = () => { this.setState({modalPlaceIsOpen: true}) }
 
-  createPlace = () => {console.log('try create place')}
-
   renderAddButton = () =>
     <div className="row">
       <div className="col-sm-2 pull-right">
@@ -27,13 +26,16 @@ class Places extends Component {
       </div>
     </div>
   renderPlace = (key, element) =>
-    <Hall key={key} place={this.props.places[key]} {...this.props} />
+    <Place key={key} place={this.props.places[key]} {...this.props} />
   renderPlaces = () => {
     return <div id="places">
       {Object.keys(this.props.places || {}).map(this.renderPlace)}
     </div>
   }
   render = () => {
+    // Задаем для нового стола дефаултный id
+    let place = {hall_id: this.props.hall.id}
+
     return <div id="halls">
       <MyModal
         header="Создание стола"
@@ -44,10 +46,15 @@ class Places extends Component {
         <PlaceForm
           {...this.props}
           closeModal={this.closeModal}
-          handleSubmit={this.createPlace}
+          handleSubmit={this.props.createPlace}
           submitButtonTitle="Создать"
+          element={place}
         />
       </MyModal>
+      <div className="row">
+        <div className="col-xs-6">Название</div>
+        <div className="col-xs-2"><small>Вместимость</small></div>
+      </div>
       {this.renderPlaces()}
       {this.renderAddButton()}
     </div>

@@ -17,7 +17,7 @@ class V1::HallsController < V1::BaseController
       render json: @hall.front_view, status: :ok
     else
       error_action
-      render json: @employee.errors, status: 400
+      render json: @hall.errors, status: 400
     end
   end
 

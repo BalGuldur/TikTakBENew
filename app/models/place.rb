@@ -15,6 +15,10 @@ class Place < ApplicationRecord
     {self.id => self.as_json}
   end
 
+  def safe_destroy
+    destroy
+  end
+
   # def self.front_view
   #   all.as_json
   # end

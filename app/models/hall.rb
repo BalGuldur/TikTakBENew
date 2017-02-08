@@ -6,13 +6,18 @@ class Hall < ApplicationRecord
 
   def self.front_view
     halls = all.includes(:places)
-    result = {}
-    halls.each {|hall| result.merge! hall.front_view}
-    result
+    result_halls = {}
+    halls.each {|hall| result_halls.merge! hall.front_view}
+    result_halls_to_places = {}
+    halls.each {|hall| result_halls_to_places.merge!({hall.id => hall.place_ids})}
+    {
+        halls: result_halls,
+        halls_to_places: result_halls_to_places,
+    }
   end
 
   def front_view
-    {self.id => self.as_json(methods: [:place_ids])}
+    {self.id => self.as_json}
   end
 
   private

@@ -11,7 +11,8 @@ export function fetchHalls() {
       method: 'GET',
       success: (data) => {
         console.log('success fetch halls')
-        dispatch({type: types.SET_HALLS, data})
+        dispatch({type: types.SET_HALLS, halls: data.halls})
+        dispatch({type: types.SET_HALLS_TO_PLACES, halls_to_places: data.halls_to_places})
       },
       errors: (data) => {
         console.log('error fetch halls')

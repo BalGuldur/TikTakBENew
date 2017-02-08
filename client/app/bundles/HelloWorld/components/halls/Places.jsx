@@ -24,17 +24,21 @@ class Places extends Component {
       </button>
       </div>
     </div>
-  renderPlace = (key, element) =>
-    <Place key={key} place={this.props.places[key]} {...this.props} />
+  renderPlace = (key) => {
+    if(this.props.places[key] !== undefined) {
+      return <Place key={key} place={this.props.places[key]} {...this.props} />
+    }
+  }
   renderPlaces = () => {
     return <div id="places">
       {/*{Object.keys(this.props.places || {}).map(this.renderPlace)}*/}
-      <div>Places</div>
+      {/*<div>Places</div>*/}
+      {(this.props.halls_to_places[this.props.hall.id] || []).map(this.renderPlace)}
     </div>
   }
   render = () => {
     // Задаем для нового стола дефаултный id
-    let place = {hall_id: this.props.hall.id}
+    let new_place = {hall_id: this.props.hall.id}
 
     return <div id="halls">
       <MyModal
@@ -48,7 +52,7 @@ class Places extends Component {
           closeModal={this.closeModal}
           handleSubmit={this.props.createPlace}
           submitButtonTitle="Создать"
-          element={place}
+          element={new_place}
         />
       </MyModal>
       <div className="row">

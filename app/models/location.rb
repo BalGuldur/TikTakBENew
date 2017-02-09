@@ -10,6 +10,7 @@ class Location < ApplicationRecord
   has_many :employees
   has_many :action_logs, through: :employees
   has_many :menu_departments, dependent: :destroy
+  has_many :menu_categories, through: :menu_departments
 
   private
 

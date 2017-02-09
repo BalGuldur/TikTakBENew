@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
     Net::HTTP.post_form(uri, message: message.to_json)
   end
 
+  def set_action_log
+    @action_log = ActionLog.create(
+        action: action_name,
+        controller: controller_name,
+        parameters: params.as_json,
+        company: current_company,
+        employee: current_employee,
+    )
+  end
+
   protected
 
   def check_many_companies

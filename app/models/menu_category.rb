@@ -1,22 +1,19 @@
-class MenuDepartment < ApplicationRecord
+class MenuCategory < ApplicationRecord
   acts_as_paranoid column: :deleted, sentinel_value: false
 
   before_save :set_default
 
-  belongs_to :location
-  has_many :menu_categories, dependent: :destroy
+  belongs_to :menu_department
 
   def self.front_view
-    menu_departments = all.includes(:menu_categories) # .includes()
+    menu_departments = all # .includes()
     front_menu_departments = {}
-    front_menu_dep_to_menu_cat = {}
     menu_departments.each {|m_d| front_menu_departments.merge! m_d.front_view_with_key}
-    menu_departments.each {|m_d| front_menu_dep_to_menu_cat.merge!(m_d.id => m_d.menu_category_ids)}
     # result_halls_to_places = {}
     # halls.each {|hall| result_halls_to_places.merge!({hall.id => hall.place_ids})}
     {
-        menu_departments: front_menu_departments,
-        menu_dep_to_menu_cat: front_menu_dep_to_menu_cat,
+        menu_categories: front_menu_departments,
+        # halls_to_places: result_halls_to_places,
     }
   end
 
@@ -29,12 +26,6 @@ class MenuDepartment < ApplicationRecord
   end
 
   private
-
-  # def self.menu_departments_to_menu_categories
-  #   result = {}
-  #   self.each {|m_d| result.merge!(m_d.id => m_d.menu_category_ids)}
-  #   result
-  # end
 
   def set_default
   end

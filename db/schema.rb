@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208123153) do
+ActiveRecord::Schema.define(version: 20170209123008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 20170208123153) do
     t.index ["deleted"], name: "index_locations_on_deleted", using: :btree
   end
 
+  create_table "menu_categories", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.integer  "menu_department_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["deleted"], name: "index_menu_categories_on_deleted", using: :btree
+    t.index ["menu_department_id"], name: "index_menu_categories_on_menu_department_id", using: :btree
+  end
+
   create_table "menu_departments", force: :cascade do |t|
     t.string   "title"
     t.boolean  "deleted"
@@ -136,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170208123153) do
   add_foreign_key "employees", "users"
   add_foreign_key "halls", "locations"
   add_foreign_key "locations", "companies"
+  add_foreign_key "menu_categories", "menu_departments"
   add_foreign_key "menu_departments", "locations"
   add_foreign_key "omni_auth_accounts", "users"
   add_foreign_key "places", "halls"

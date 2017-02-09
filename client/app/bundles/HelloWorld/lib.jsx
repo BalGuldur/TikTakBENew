@@ -8,4 +8,5 @@ export function filterByKeysValues(obj, keys_values) {
     })
     if(!filtred) {result[key] = obj[key]}
   })
+  return result
 }

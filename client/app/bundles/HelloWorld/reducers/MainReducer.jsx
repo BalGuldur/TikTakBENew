@@ -139,6 +139,10 @@ function menu_departments(state = '', action) {
       return action.menu_departments
     case types.ADD_MENU_DEPARTMENT:
       return Object.assign({}, state, {[action.data.id]: action.data})
+    case types.DELETE_MENU_DEPARTMENT:
+      return baseActions.deleteElement(state, action.data.id.toString())
+    case types.EDIT_MENU_DEPARTMENT:
+      return Object.assign({}, state, {[action.data.id]: action.data})
     default:
       return state;
   }

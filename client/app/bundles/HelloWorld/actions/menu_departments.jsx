@@ -38,3 +38,40 @@ export function createDepartment(department) {
     })
   }
 }
+export function deleteDepartment(department) {
+  return (dispatch) => {
+    console.log('delete department')
+    console.log(department)
+
+    fetchDataClean({
+      url: '/menu_departments/'+department.id,
+      method: 'DELETE',
+      success: (data) => {
+        console.log('success delete department')
+        dispatch({type: types.DELETE_MENU_DEPARTMENT, data})
+      },
+      errors: (data) => {
+        console.log('error delete employee')
+      }
+    })
+  }
+}
+export function editDepartment(department) {
+  return (dispatch) => {
+    console.log('edit department action')
+    console.log(department)
+
+    fetchDataClean({
+      url: '/menu_departments/'+department.id,
+      method: 'PUT',
+      data: department,
+      success: (data) => {
+        console.log('success edit department')
+        dispatch({type: types.EDIT_MENU_DEPARTMENT, data})
+      },
+      errors: (data) => {
+        console.log('error edit department')
+      }
+    })
+  }
+}

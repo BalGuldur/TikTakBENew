@@ -56,7 +56,8 @@ class Menu extends Component {
     <MenuDepartment
       key={key}
       handleClick={this.changeActiveDepartment}
-      {...this.props.menu_departments[key]}
+      config_mode={this.state.config_mode}
+      department={this.props.menu_departments[key]}
     />
   renderMenuDepartments = () =>
   // TODO: Проверить отображаение когда будут элементы может не хватает renderMenuDepartment()

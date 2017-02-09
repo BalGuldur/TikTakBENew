@@ -147,6 +147,26 @@ function menu_departments(state = '', action) {
       return state;
   }
 }
+function menu_dep_to_menu_cat(state = '', action){
+  switch (action.type) {
+    case types.SET_MENU_DEPARTMENTS:
+      return action.menu_dep_to_menu_cat;
+    case types.ADD_MENU_DEPARTMENT:
+      return Object.assign({}, state, {[action.data.id]: []})
+    case types.DELETE_MENU_DEPARTMENT:
+      return baseActions.deleteElement(state, action.data.id.toString())
+    default:
+      return state;
+  }
+}
+function menu_categories(state = '', action) {
+  switch (action.type) {
+    case types.SET_MENU_CATEGORIES:
+      return action.menu_categories;
+    default:
+      return state;
+  }
+}
 // Object.assign({}, state, action.data)
 // {...state, hall}
 
@@ -166,6 +186,8 @@ const MainReducer = combineReducers({
   halls_to_places,
   places,
   menu_departments,
+  menu_dep_to_menu_cat,
+  menu_categories,
 });
 
 export default MainReducer;

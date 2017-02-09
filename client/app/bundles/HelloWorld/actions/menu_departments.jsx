@@ -11,7 +11,11 @@ export function fetchMenuDepartments() {
       method: 'GET',
       success: (data) => {
         console.log('success fetch menu_departments')
-        dispatch({type: types.SET_MENU_DEPARTMENTS, menu_departments: data.menu_departments})
+        dispatch({
+          type: types.SET_MENU_DEPARTMENTS,
+          menu_departments: data.menu_departments,
+          menu_dep_to_menu_cat: data.menu_dep_to_menu_cat,
+        })
         // dispatch({type: types.SET_HALLS_TO_PLACES, halls_to_places: data.halls_to_places})
       },
       errors: (data) => {

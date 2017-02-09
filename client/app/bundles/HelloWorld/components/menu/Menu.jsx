@@ -5,6 +5,7 @@ import MenuDepartment from './MenuDepartmentContainer'
 import ButtonAdd from '../layouts/ButtonAdd'
 import _DepartmentForm from './_DepartmentForm'
 import StandartModalForm from '../base_elements/StandartModalForm'
+import MenuCategories from './MenuCategoriesContainer'
 
 class Menu extends Component {
   constructor(props) {
@@ -13,24 +14,26 @@ class Menu extends Component {
     this.state = {
       config_mode: this.props.route.config_mode,
       departmentModalIsOpen: false,
-      activeDepartmentId: this.props.menu_departments && Object.keys(this.props.menu_departments)[0] || "",
+      activeDepartmentId: "",
     }
   }
   componentWillMount() {
-    console.log('Menu will mount')
     this.props.fetchMenuDepartments()
+    this.props.fetchMenuCategories()
   }
-  componentDidMount() {
-    this.props.initialUserSubscriptions()
-  }
-  componentWillUnmount() {
-    this.props.cancelAllUserSubscriptions()
+  componentDidMount() { this.props.initialUserSubscriptions() }
+  componentWillUnmount() { this.props.cancelAllUserSubscriptions() }
+  componentWillReceiveProps = (nextProps) => {
+    if(this.state.activeDepartmentId == "") {
+      this.setState({activeDepartmentId: nextProps.menu_departments && Object.keys(nextProps.menu_departments)[0] || ""})
+    }
   }
 
   openModal = () => { this.setState({departmentModalIsOpen: true})}
   closeModal = () => { this.setState({departmentModalIsOpen: false})}
   handleSubmit = (department) => { this.props.createDepartment(department) }
 
+  changeActiveDepartment = (department_id) => { this.setState({activeDepartmentId: department_id}) }
   renderButtonAdd = () => {
     if (this.state.config_mode == "true") {
       return <ButtonAdd handleClick={this.openModal} />
@@ -74,7 +77,7 @@ class Menu extends Component {
         <ButtonPlank>
           {this.renderMenuDepartments()}
         </ButtonPlank>
-        <div>Test Menu</div>
+        <MenuCategories menu_department_id={this.state.activeDepartmentId}/>
       </ContentLayout>
     </div>
   }

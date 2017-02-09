@@ -47,7 +47,7 @@ class MenuDepartment extends Component {
     return <div className="col-xs-2">
       <button
         className="btn btn-default inline"
-        onClick={this.testLog}
+        onClick={this.props.handleClick.bind(this, this.props.department.id)}
       >
         {this.props.department.title}
       </button>

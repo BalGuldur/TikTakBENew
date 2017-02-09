@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-// import { MAIN_NAME_UPDATE } from '../constants/main';
 import * as types from '../constants/main'
 import * as baseActions from './base_reduce_actions'
 
@@ -138,6 +137,8 @@ function menu_departments(state = '', action) {
   switch (action.type) {
     case types.SET_MENU_DEPARTMENTS:
       return action.menu_departments
+    case types.ADD_MENU_DEPARTMENT:
+      return Object.assign({}, state, {[action.data.id]: action.data})
     default:
       return state;
   }

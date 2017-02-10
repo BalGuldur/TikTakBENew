@@ -5,6 +5,7 @@ import * as lib from '../../lib'
 import _MenuCategoryForm from './_MenuCategoryForm'
 import IBox from '../layouts/IBox'
 import CollectionContainer from '../base_containers/CollectionContainer'
+import MenuItems from './MenuItemsContainer'
 
 
 class MenuCategories extends Component {
@@ -25,7 +26,7 @@ class MenuCategories extends Component {
       collapsed="true"
       title={menuCategory.title}
     >
-      MenuItems
+      <MenuItems menu_category_id={menuCategory.id} config_mode="true"/>
     </IBox>
   render = () => {
     let menu_categories = lib.filterByKeysValues(
@@ -49,6 +50,6 @@ class MenuCategories extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({menu_categories: state.menu_categories, menu_dep_to_menu_cat: state.menu_dep_to_menu_cat})
+const mapStateToProps = (state) => ({...state})
 
 export default connect(mapStateToProps, actions)(MenuCategories)

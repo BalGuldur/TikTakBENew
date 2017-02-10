@@ -7,6 +7,7 @@ import * as hallsActions from './halls'
 import * as placesActions from './places'
 import * as menuDepartmentsActions from './menu_departments'
 import * as menuCategoriesActions from './menu_categories'
+import * as menuItemsActions from './menu_items'
 
 const actions = {
   ...mainActions,
@@ -18,6 +19,7 @@ const actions = {
   ...placesActions,
   ...menuDepartmentsActions,
   ...menuCategoriesActions,
+  ...menuItemsActions,
 }
 
 export default actions

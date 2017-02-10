@@ -4,7 +4,7 @@ class MainController < ApplicationController
   before_action :set_selected_employee, only: [:choose_company]
 
   def index
-    menu_items = [
+    navigation_items = [
         {id: 1, title: 'Первый пункт', link: '/', icon: 'fa fa-camera'},
         {id: 2, title: 'Заведения', link: '/locations', icon: 'fa fa-building-o'},
         {id: 3, title: 'Сотрудники', link: '/employees', icon: 'fa fa-child'},
@@ -16,7 +16,7 @@ class MainController < ApplicationController
         name: 'stranger',
         current_user: current_user.react_model,
         current_employee: current_employee,
-        menu_items: menu_items,
+        navigation_items: navigation_items,
         current_company: current_company,
         current_location: current_location,
         locations: current_company.locations,

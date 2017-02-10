@@ -14,6 +14,7 @@ export function fetchMenuCategories() {
         dispatch({
           type: types.SET_MENU_CATEGORIES,
           menu_categories: data.menu_categories,
+          menu_cat_to_menu_items: data.menu_cat_to_menu_items,
           // menu_dep_to_menu_cat: data.menu_dep_to_menu_cat,
         })
       },

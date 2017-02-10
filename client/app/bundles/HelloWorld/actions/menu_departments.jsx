@@ -1,7 +1,15 @@
 import * as types from '../constants/main'
+import {fetchMenuCategories} from './menu_categories'
+import {fetchMenuItems} from './menu_items'
 
 import { fetchData, fetchDataClean } from './helpers'
 
+export function fetchMenuDepartmentsWithNested() {
+  return (dispatch) => {
+    dispatch(fetchMenuDepartments())
+
+  }
+}
 export function fetchMenuDepartments() {
   return (dispatch) => {
     console.log ('fetch menu_departments')

@@ -20,7 +20,7 @@ class SideNavBar extends Component {
             </strong>
             <UserInfo current_user={this.props.current_user}/>
           </li>
-          {this.props.menu_items.map(this.renderMenuItem)}
+          {this.props.navigation_items.map(this.renderMenuItem)}
         </ul>
       </div>
     </nav>

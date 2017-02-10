@@ -30,7 +30,7 @@ const current_location = (state = '', action) => {
       return state;
   }
 }
-const menu_items = (state = '', action) => {
+const navigation_items = (state = '', action) => {
   switch (action.type) {
     default:
       return state;
@@ -192,7 +192,7 @@ function menu_cat_to_menu_items(state = '', action){
 function menu_items(state = '', action) {
   switch (action.type) {
     case types.SET_MENU_ITEMS:
-      return action.menu_categories;
+      return action.menu_items;
     case types.ADD_MENU_ITEM:
       return Object.assign({}, state, {[action.data.id]: action.data})
     case types.DELETE_MENU_ITEM:
@@ -209,7 +209,7 @@ function menu_items(state = '', action) {
 const MainReducer = combineReducers({
   name,
   current_user,
-  menu_items,
+  navigation_items,
   locations,
   current_company,
   current_location,

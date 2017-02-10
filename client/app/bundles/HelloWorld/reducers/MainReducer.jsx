@@ -175,6 +175,34 @@ function menu_categories(state = '', action) {
       return state;
   }
 }
+function menu_cat_to_menu_items(state = '', action){
+  switch (action.type) {
+    case types.SET_MENU_CATEGORIES:
+      return action.menu_cat_to_menu_items;
+    case types.ADD_MENU_CATEGORY:
+      return Object.assign({}, state, {[action.data.id]: []})
+    case types.DELETE_MENU_CATEGORY:
+      return baseActions.deleteElement(state, action.data.id.toString())
+    case types.ADD_MENU_ITEM:
+      return baseActions.addNestedElement(state, action.data.menu_category_id, action.data.id);
+    default:
+      return state;
+  }
+}
+function menu_items(state = '', action) {
+  switch (action.type) {
+    case types.SET_MENU_ITEMS:
+      return action.menu_categories;
+    case types.ADD_MENU_ITEM:
+      return Object.assign({}, state, {[action.data.id]: action.data})
+    case types.DELETE_MENU_ITEM:
+      return baseActions.deleteElement(state, action.data.id.toString())
+    case types.EDIT_MENU_ITEM:
+      return Object.assign({}, state, {[action.data.id]: action.data})
+    default:
+      return state;
+  }
+}
 // Object.assign({}, state, action.data)
 // {...state, hall}
 
@@ -196,6 +224,8 @@ const MainReducer = combineReducers({
   menu_departments,
   menu_dep_to_menu_cat,
   menu_categories,
+  menu_cat_to_menu_items,
+  menu_items,
 });
 
 export default MainReducer;

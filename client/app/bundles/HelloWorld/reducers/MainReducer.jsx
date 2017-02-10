@@ -169,6 +169,8 @@ function menu_categories(state = '', action) {
       return Object.assign({}, state, {[action.data.id]: action.data})
     case types.DELETE_MENU_CATEGORY:
       return baseActions.deleteElement(state, action.data.id.toString())
+    case types.EDIT_MENU_CATEGORY:
+      return Object.assign({}, state, {[action.data.id]: action.data})
     default:
       return state;
   }

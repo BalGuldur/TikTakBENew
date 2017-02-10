@@ -6,11 +6,6 @@ class _MenuCategoryForm extends Component {
     super(props)
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    console.log('will recieve props')
-    console.log(nextProps)
-  }
-
   render = () =>
     <div>
       <MyInput

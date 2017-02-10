@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/menu_categories';
 import * as lib from '../../lib'
 import _MenuCategoryForm from './_MenuCategoryForm'
-import IBox from '../layouts/IBox'
+
 import CollectionContainer from '../base_containers/CollectionContainer'
 
 
@@ -12,21 +12,18 @@ class MenuCategories extends Component {
     super(props)
   }
 
-  handleCreate = (element) => { console.log('createElement'); console.log(element); this.props.createMenuCategory(element) }
-  handleDelete = (element) => { console.log('deleteElement'); this.props.deleteMenuCategory(element) }
-  handleEdit = (element) => { console.log('deleteElement'); this.props.editMenuCategory(element) }
+  handleCreate = (element) => { console.log('createElement'); console.log(element) }//this.props.createMenuCategory(element) }
+  handleDelete = (element) => { console.log('deleteElement'); }//this.props.deleteMenuCategory(element) }
+  handleEdit = (element) => { console.log('deleteElement'); }//this.props.deleteMenuCategory(element) }
 
   categoryForm = (handleChange, element) => {
     return <_MenuCategoryForm handleChange={handleChange} element={element}/>
   }
+
   renderMenuCategory = (menuCategory) =>
-    <IBox
-      collapsAble="true"
-      collapsed="true"
-      title={menuCategory.title}
-    >
-      MenuItems
-    </IBox>
+    <div>
+      TestMenuCategory {menuCategory.title}
+    </div>
   render = () => {
     let menu_categories = lib.filterByKeysValues(
       this.props.menu_categories || {},

@@ -1,36 +1,27 @@
 import React, { Component } from 'react'
 
+// collapsed - "true"
+// collapsAble - "true" "false"
+// title - text
 class IBox extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      // TODO: Изменить логику задачи collapsed (сейчас задается boolean но передается в параметрах text
+      // Если передать "false" в collapsed, то все равно будет восприниматься как true
       collapsed: this.props.collapsed || false,
     }
   }
 
-  collapsHideStyle = () => {
-    if (this.state.collapsed) {return " hidden"} else {return ""}
-  }
   changeCollapsed = () => {
-    this.setState({collapsed: !this.state.collapsed})
+    console.log('change')
+    if (this.props.collapsAble=="true") { this.setState({collapsed: !this.state.collapsed}) }
   }
-  collapsAble = () => {
-    return this.props.collapsAble || (() => {
-        if (this.props.collapsed !== undefined) {
-          return "true"
-        } else {
-          return "false"
-        }
-      })
-  }
-  hideTitle = () => {
-    if (this.props.title === undefined) {
-      return " hidden"
-    } else {
-      return ""
-    }
-  }
+
+  footerStyle = () => { if (this.props.footer === undefined) {return "footer hidden"} else {return "ibox-footer"}}
+  collapsHideStyle = () => { if (this.state.collapsed) {return " hidden"} else {return ""} }
+  hideTitle = () => { if (this.props.title === undefined) { return " hidden" } else { return "" } }
   render = () => {
     return <div className="ibox float-e-margins">
       <div
@@ -43,6 +34,9 @@ class IBox extends Component {
       </div>
       <div className={"ibox-content" + this.collapsHideStyle()}>
         {this.props.children}
+      </div>
+      <div className={this.footerStyle()}>
+        {this.props.footer}
       </div>
     </div>
   }

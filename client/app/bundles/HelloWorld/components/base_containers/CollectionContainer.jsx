@@ -24,13 +24,13 @@ class CollectionContainer extends Component {
 
   editModalOpen = () => { this.setState({editModalIsOpen: true}) }
   editModalClose = () => { this.setState({editModalIsOpen: false}) }
-  editModalSubmit = () => { console.log('modal submit'); console.log(this.state.editedElement) }
+  editModalSubmit = () => { console.log('modal submit'); console.log(this.state.editedElement); this.props.handleEdit(this.state.editedElement) }
 
   handleEdit = (element) => {
     this.setState({editedElement: element})
     this.editModalOpen()
   }
-  handleDelete = (element) => { console.log('delete element'); console.log(element)}
+  handleDelete = (element) => { this.props.handleDelete(element)}
   handleCreate = () => {
     this.props.handleCreate(Object.assign({}, this.state.newElement))
     this.setState({newElement: this.props.newElement})
@@ -47,20 +47,21 @@ class CollectionContainer extends Component {
     this.handleChangeElement(key, e, "editedElement")
   }
 
+  renderElementConfig = (element) => {
+      return <ButtonWithChild
+        childrenType="dropdown"
+        buttonIcon="fa fa-cog"
+        buttonStyle="btn btn-default btn-sm"
+      >
+        <EditDelete
+          handleEdit={this.handleEdit.bind(this, element)}
+          handleDelete={this.handleDelete.bind(this, element)}
+        />
+      </ButtonWithChild>
+  }
   renderElement = (key) => {
-      console.log(this.props.elements)
-
       return <div key={key}>
-        <ButtonWithChild
-          childrenType="dropdown"
-          buttonIcon="fa fa-cog"
-          buttonStyle="btn btn-default btn-sm"
-        >
-          <EditDelete
-            handleEdit={this.handleEdit.bind(this, this.props.elements[key])}
-            handleDelete={this.handleDelete.bind(this, this.props.elements[key])}
-          />
-        </ButtonWithChild>
+        {this.renderElementConfig(this.props.elements[key])}
         {this.props.renderElement(this.props.elements[key])}
       </div>
   }

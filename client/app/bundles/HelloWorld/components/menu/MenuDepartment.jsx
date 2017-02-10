@@ -20,8 +20,10 @@ class MenuDepartment extends Component {
     switch (eventName) {
       case 'delete':
         this.props.deleteDepartment(this.props.department)
+        break
       case 'edit':
         this.openModal()
+        break
     }
   }
 

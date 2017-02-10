@@ -155,6 +155,8 @@ function menu_dep_to_menu_cat(state = '', action){
       return Object.assign({}, state, {[action.data.id]: []})
     case types.DELETE_MENU_DEPARTMENT:
       return baseActions.deleteElement(state, action.data.id.toString())
+    case types.ADD_MENU_CATEGORY:
+      return baseActions.addNestedElement(state, action.data.menu_department_id, action.data.id);
     default:
       return state;
   }
@@ -163,6 +165,10 @@ function menu_categories(state = '', action) {
   switch (action.type) {
     case types.SET_MENU_CATEGORIES:
       return action.menu_categories;
+    case types.ADD_MENU_CATEGORY:
+      return Object.assign({}, state, {[action.data.id]: action.data})
+    case types.DELETE_MENU_CATEGORY:
+      return baseActions.deleteElement(state, action.data.id.toString())
     default:
       return state;
   }

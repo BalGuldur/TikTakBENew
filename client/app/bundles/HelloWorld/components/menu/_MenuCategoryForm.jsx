@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 import MyInput from '../base_elements/MyInput'
 
-const _MenuCategoryForm = (props) =>
-  <div>
-    <MyInput
-      inputName="title"
-      inputValue={props.title}
-      handleChange={props.handleChange}
-      placeholder="Название"
-    />
-  </div>
+class _MenuCategoryForm extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    console.log('will recieve props')
+    console.log(nextProps)
+  }
+
+  render = () =>
+    <div>
+      <MyInput
+        inputName="title"
+        inputValue={this.props.element.title}
+        handleChange={this.props.handleChange}
+        placeholder="Название"
+      />
+    </div>
+}
 
 export default _MenuCategoryForm

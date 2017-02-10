@@ -23,7 +23,7 @@ export function fetchMenuCategories() {
     })
   }
 }
-export function createCategory(menu_category) {
+export function createMenuCategory(menu_category) {
   return (dispatch) => {
     console.log('create new menu_category')
 
@@ -41,7 +41,7 @@ export function createCategory(menu_category) {
     })
   }
 }
-export function deleteCategory(menu_category) {
+export function deleteMenuCategory(menu_category) {
   return (dispatch) => {
     console.log('delete menu_category')
     console.log(menu_category)
@@ -59,7 +59,7 @@ export function deleteCategory(menu_category) {
     })
   }
 }
-export function editCategory(menu_category) {
+export function editMenuCategory(menu_category) {
   return (dispatch) => {
     console.log('edit menu_category action')
     console.log(menu_category)

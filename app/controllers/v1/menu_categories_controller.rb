@@ -9,7 +9,6 @@ class V1::MenuCategoriesController < V1::BaseController
 
   def create
     @menu_category = MenuCategory.new(menu_category_params)
-    @menu_category.location = current_location
     if @menu_category.save
       # Broadcats не делаем, т.к. это редко используемый элемент
       # Обновлем тлоько на клиенте с помощью вызова самого action
@@ -50,7 +49,7 @@ class V1::MenuCategoriesController < V1::BaseController
   end
 
   def menu_category_params
-    params.permit(:title)
+    params.permit(:title, :menu_department_id)
   end
 
   def success_action

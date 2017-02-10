@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ContentLayout from '../layouts/ContentLayout'
-import ButtonPlank from '../layouts/ButtonPlank'
+import IBox from '../layouts/IBox'
 import MenuDepartment from './MenuDepartmentContainer'
 import ButtonAdd from '../layouts/ButtonAdd'
 import _DepartmentForm from './_DepartmentForm'
@@ -74,9 +74,9 @@ class Menu extends Component {
   render = () => {
     return <div id="menu">
       <ContentLayout>
-        <ButtonPlank>
+        <IBox>
           {this.renderMenuDepartments()}
-        </ButtonPlank>
+        </IBox>
         <MenuCategories menu_department_id={this.state.activeDepartmentId}/>
       </ContentLayout>
     </div>

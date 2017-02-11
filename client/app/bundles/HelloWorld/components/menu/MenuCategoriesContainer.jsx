@@ -13,6 +13,7 @@ class MenuCategories extends Component {
     super(props)
   }
 
+
   handleCreate = (element) => { console.log('createElement'); console.log(element); this.props.createMenuCategory(element) }
   handleDelete = (element) => { console.log('deleteElement'); this.props.deleteMenuCategory(element) }
   handleEdit = (element) => { console.log('deleteElement'); this.props.editMenuCategory(element) }

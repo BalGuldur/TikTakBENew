@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
     resources :menu_departments, only: [:create, :destroy, :update] do
       get 'index', on: :collection
+      get 'index_with_nested', on: :collection
     end
     # post 'locations', to: 'locations#create', as: 'create_location'
     # TODO: change routes to get 'route', on: :collection

@@ -19,9 +19,9 @@ class Menu extends Component {
   }
   componentWillMount() {
     this.props.fetchMenuDepartmentsWithNested();
-    // this.props.fetchMenuCategories();
+    // this.props.fetchMenuDepartments();
     // this.props.fetchMenuItems();
-    // // this.props.fetchMenuItems()
+    // this.props.fetchMenuItems();
   }
   componentDidMount() { this.props.initialUserSubscriptions() }
   componentWillUnmount() { this.props.cancelAllUserSubscriptions() }

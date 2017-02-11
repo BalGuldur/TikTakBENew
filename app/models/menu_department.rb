@@ -5,9 +5,10 @@ class MenuDepartment < ApplicationRecord
 
   belongs_to :location
   has_many :menu_categories, dependent: :destroy
+  has_many :menu_items, through: :menu_categories
 
   def self.front_view
-    menu_departments = all.includes(:menu_categories) # .includes()
+    menu_departments = all.includes(:menu_categories, :menu_items) # .includes()
     front_menu_departments = {}
     front_menu_dep_to_menu_cat = {}
     menu_departments.each {|m_d| front_menu_departments.merge! m_d.front_view_with_key}
@@ -18,6 +19,12 @@ class MenuDepartment < ApplicationRecord
         menu_departments: front_menu_departments,
         menu_dep_to_menu_cat: front_menu_dep_to_menu_cat,
     }
+  end
+
+  def self.front_view_with_nested current_location
+    self.front_view
+        .merge!(current_location.menu_categories.front_view)
+        .merge!(current_location.menu_items.front_view)
   end
 
   def front_view_with_key

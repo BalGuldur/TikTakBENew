@@ -51,7 +51,7 @@ class CollectionContainer extends Component {
       return <ButtonWithChild
         childrenType="dropdown"
         buttonIcon="fa fa-cog"
-        buttonStyle="btn btn-default btn-sm"
+        buttonStyle="btn btn-default btn-sm inline"
       >
         <EditDelete
           handleEdit={this.handleEdit.bind(this, element)}

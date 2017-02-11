@@ -38,11 +38,12 @@ const throttledClean = _.throttle((data) => {
 			res => data.error(res) :
 			false,
 		beforeSend: (xhr) => {
+			console.log('before send ajax')
 			xhr.setRequestHeader('X-CSRF-Token', token)
 		},
 		...data.additional,
 	})
-}, 1000)
+}, 100)
 
 export function fetchDataClean(data) {
 	throttledClean(data, token)

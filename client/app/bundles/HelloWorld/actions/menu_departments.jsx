@@ -6,8 +6,27 @@ import { fetchData, fetchDataClean } from './helpers'
 
 export function fetchMenuDepartmentsWithNested() {
   return (dispatch) => {
-    dispatch(fetchMenuDepartments())
+    console.log ('fetch menu_departments')
 
+    fetchDataClean({
+      url: '/menu_departments/index_with_nested',
+      method: 'GET',
+      success: (data) => {
+        console.log('success fetch menu_departments')
+        dispatch({
+          type: types.SET_MENU_DEPARTMENTS,
+          menu_departments: data.menu_departments,
+          menu_dep_to_menu_cat: data.menu_dep_to_menu_cat,
+          menu_categories: data.menu_categories,
+          menu_cat_to_menu_items: data.menu_cat_to_menu_items,
+          menu_items: data.menu_items,
+        })
+        // dispatch({type: types.SET_HALLS_TO_PLACES, halls_to_places: data.halls_to_places})
+      },
+      errors: (data) => {
+        console.log('error fetch menu_departments')
+      }
+    })
   }
 }
 export function fetchMenuDepartments() {

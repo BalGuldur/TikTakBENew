@@ -7,6 +7,10 @@ class V1::MenuDepartmentsController < V1::BaseController
     render json: current_location.menu_departments.front_view, status: :ok
   end
 
+  def index_with_nested
+    render json: current_location.menu_departments.front_view_with_nested(current_location), status: :ok
+  end
+
   def create
     @menu_department = MenuDepartment.new(menu_department_params)
     @menu_department.location = current_location

@@ -163,6 +163,8 @@ function menu_dep_to_menu_cat(state = '', action){
 }
 function menu_categories(state = '', action) {
   switch (action.type) {
+    case types.SET_MENU_DEPARTMENTS:
+      return action.menu_categories;
     case types.SET_MENU_CATEGORIES:
       return action.menu_categories;
     case types.ADD_MENU_CATEGORY:
@@ -177,6 +179,8 @@ function menu_categories(state = '', action) {
 }
 function menu_cat_to_menu_items(state = '', action){
   switch (action.type) {
+    case types.SET_MENU_DEPARTMENTS:
+      return action.menu_cat_to_menu_items;
     case types.SET_MENU_CATEGORIES:
       return action.menu_cat_to_menu_items;
     case types.ADD_MENU_CATEGORY:
@@ -191,6 +195,8 @@ function menu_cat_to_menu_items(state = '', action){
 }
 function menu_items(state = '', action) {
   switch (action.type) {
+    case types.SET_MENU_DEPARTMENTS:
+      return action.menu_items;
     case types.SET_MENU_ITEMS:
       return action.menu_items;
     case types.ADD_MENU_ITEM:

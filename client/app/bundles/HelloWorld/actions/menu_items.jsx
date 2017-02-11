@@ -2,27 +2,27 @@ import * as types from '../constants/main'
 
 import { fetchData, fetchDataClean } from './helpers'
 
-export function fetchMenuItems() {
-  return (dispatch) => {
-    console.log ('fetch menu_items')
-
-    fetchDataClean({
-      url: '/menu_items/index',
-      method: 'GET',
-      success: (data) => {
-        console.log('success fetch menu_items')
-        dispatch({
-          type: types.SET_MENU_ITEMS,
-          menu_items: data.menu_items,
-          // menu_dep_to_menu_cat: data.menu_dep_to_menu_cat,
-        })
-      },
-      errors: (data) => {
-        console.log('error fetch menu_items')
-      }
-    })
-  }
-}
+// export function fetchMenuItems() {
+//   return (dispatch) => {
+//     console.log ('fetch menu_items')
+//
+//     fetchDataClean({
+//       url: '/menu_items/index',
+//       method: 'GET',
+//       success: (data) => {
+//         console.log('success fetch menu_items')
+//         dispatch({
+//           type: types.SET_MENU_ITEMS,
+//           menu_items: data.menu_items,
+//           // menu_dep_to_menu_cat: data.menu_dep_to_menu_cat,
+//         })
+//       },
+//       errors: (data) => {
+//         console.log('error fetch menu_items')
+//       }
+//     })
+//   }
+// }
 export function createMenuItem(menu_item) {
   return (dispatch) => {
     console.log('create new menu_item')

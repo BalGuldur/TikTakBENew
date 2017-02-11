@@ -75,7 +75,7 @@ class ButtonWithChild extends Component {
     let buttonIcon = this.props.buttonIcon || "fa fa-plus"
     let buttonStyle = this.props.buttonStyle || "btn btn-default"
 
-    return <div>
+    return <div cassName="inline">
       <div>
         <button className={buttonStyle} onClick={this.changeOpen}>
           <i className={buttonIcon}>{buttonTitle}</i>

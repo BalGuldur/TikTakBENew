@@ -19,10 +19,13 @@ class MenuItems extends Component {
   menuItemForm = (handleChange, element) => {
     return <_MenuItemForm handleChange={handleChange} element={element}/>
   }
-  renderMenuItem = (menuItem) =>
+  renderMenuItem = (menuItem, CRUD) =>
     <div>
-      <p>{menuItem.title}</p>
-      <p>{menuItem.price}</p>
+      <div className="inline">{menuItem.title}</div>
+      <div className="inline">{menuItem.price}</div>
+      <div className="inline">
+        {CRUD(menuItem)}
+      </div>
     </div>
   render = () => {
     let menu_items = lib.filterByKeysValues(

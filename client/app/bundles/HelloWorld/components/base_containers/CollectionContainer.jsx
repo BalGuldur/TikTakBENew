@@ -60,11 +60,11 @@ class CollectionContainer extends Component {
       </ButtonWithChild>
   }
   renderElement = (key) => {
-      return <span key={key}>
-        {this.renderElementConfig(this.props.elements[key])}
-        {this.props.renderElement(this.props.elements[key])}
-      </span>
+      return <div key={key}>
+        {this.props.renderElement(this.props.elements[key], this.renderElementConfig)}
+      </div>
   }
+// {this.renderElementConfig(this.props.elements[key])}
   render = () => {
 
     return <div>

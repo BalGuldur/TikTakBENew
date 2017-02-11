@@ -21,14 +21,23 @@ class MenuCategories extends Component {
   categoryForm = (handleChange, element) => {
     return <_MenuCategoryForm handleChange={handleChange} element={element}/>
   }
-  renderMenuCategory = (menuCategory) =>
-    <IBox
+  renderMenuCategory = (menuCategory, CRUD) => {
+    let CRUDRender = () => {return CRUD(menuCategory)}
+    let title = () => {
+      return <div>
+        <div className="inline">{menuCategory.title}</div>
+        <div classNmae="inline"> {CRUD(menuCategory)}</div>
+      </div>
+    }
+
+    return <IBox
       collapsAble="true"
       collapsed="true"
-      title={menuCategory.title}
+      title={title()}
     >
       <MenuItems menu_category_id={menuCategory.id} config_mode="true"/>
     </IBox>
+  }
   render = () => {
     let menu_categories = lib.filterByKeysValues(
       this.props.menu_categories || {},

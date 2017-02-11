@@ -22,11 +22,10 @@ class MenuCategories extends Component {
     return <_MenuCategoryForm handleChange={handleChange} element={element}/>
   }
   renderMenuCategory = (menuCategory, CRUD) => {
-    let CRUDRender = () => {return CRUD(menuCategory)}
     let title = () => {
       return <div>
         <div className="inline">{menuCategory.title}</div>
-        <div classNmae="inline"> {CRUD(menuCategory)}</div>
+        <div className="inline"> {CRUD(menuCategory)}</div>
       </div>
     }
 

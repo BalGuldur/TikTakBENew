@@ -54,6 +54,7 @@ class MenuCategories extends Component {
         elementForm={this.categoryForm}
         elements={menu_categories}
         renderElement={this.renderMenuCategory}
+        config_mode={this.props.config_mode}
       />
     </div>
   }

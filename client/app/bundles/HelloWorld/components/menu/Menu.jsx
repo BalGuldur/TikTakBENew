@@ -79,7 +79,7 @@ class Menu extends Component {
         <IBox>
           {this.renderMenuDepartments()}
         </IBox>
-        <MenuCategories menu_department_id={this.state.activeDepartmentId}/>
+        <MenuCategories menu_department_id={this.state.activeDepartmentId} config_mode="true"/>
       </ContentLayout>
     </div>
   }

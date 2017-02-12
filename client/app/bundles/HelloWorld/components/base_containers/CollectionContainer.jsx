@@ -48,6 +48,7 @@ class CollectionContainer extends Component {
   }
 
   renderElementConfig = (element) => {
+    if (this.props.config_mode == "true") {
       return <ButtonWithChild
         childrenType="dropdown"
         buttonIcon="fa fa-cog"
@@ -58,32 +59,40 @@ class CollectionContainer extends Component {
           handleDelete={this.handleDelete.bind(this, element)}
         />
       </ButtonWithChild>
+    } else { return "" }
   }
   renderElement = (key) => {
       return <div key={key}>
         {this.props.renderElement(this.props.elements[key], this.renderElementConfig)}
       </div>
   }
+  renderAdd = () => {
+    if (this.props.config_mode == "true") {
+      return <div>
+        <ButtonWithChild
+          childrenType="modal"
+          modalHeader="Создать Элемент"
+          modalSubmit={this.handleCreate}
+          modalSubmitTitle="Создать"
+        >
+          {this.props.elementForm(this.handleChangeNewElement, this.state.newElement)}
+        </ButtonWithChild>
+        <MyModal
+          isOpen={this.state.editModalIsOpen}
+          header="Изменить Элемент"
+          modalSubmit={this.editModalSubmit}
+          modalClose={this.editModalClose}
+        >
+          {this.props.elementForm(this.handleChangeEditElement, this.state.editedElement)}
+        </MyModal>
+      </div>
+    } else { return "" }
+  }
 // {this.renderElementConfig(this.props.elements[key])}
   render = () => {
 
     return <div>
-      <ButtonWithChild
-        childrenType="modal"
-        modalHeader="Создать Элемент"
-        modalSubmit={this.handleCreate}
-        modalSubmitTitle="Создать"
-      >
-        {this.props.elementForm(this.handleChangeNewElement, this.state.newElement)}
-      </ButtonWithChild>
-      <MyModal
-        isOpen={this.state.editModalIsOpen}
-        header="Изменить Элемент"
-        modalSubmit={this.editModalSubmit}
-        modalClose={this.editModalClose}
-      >
-        {this.props.elementForm(this.handleChangeEditElement, this.state.editedElement)}
-      </MyModal>
+      {this.renderAdd()}
       {Object.keys(this.props.elements || {}).map(this.renderElement)}
     </div>
   }

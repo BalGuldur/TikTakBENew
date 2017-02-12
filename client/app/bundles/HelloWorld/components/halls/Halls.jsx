@@ -34,29 +34,34 @@ class Halls extends Component {
     })
   }
 
-  renderHall = (key, element) =>
-    <Hall key={key} hall={this.props.halls[key]} {...this.props} />
+  configMode = () => { return this.props.route && this.props.route.config_mode || this.props.config_mode || "false"}
+  renderHall = (key, element) => <Hall key={key} hall={this.props.halls[key]} {...this.props} config_mode={this.configMode()}/>
   renderHalls = () => {
     return <div className="row">
       {Object.keys(this.props.halls || {}).map(this.renderHall)}
     </div>
   }
+  renderAdd = () => {
+    if (this.configMode() == "true") {
+      return <div className="ibox">
+        <div className="ibox-content">
+        <MyModal
+          header="Создание зала"
+          closeModal={this.closeModal}
+          isOpen={this.state.modalHallIsOpen}
+          emptyFooter="true"
+        >
+          <CreateHallForm {...this.props} closeModal={this.closeModal}/>
+        </MyModal>
+        <button className="btn btn-default" onClick={this.openModal}>Создать зал</button>
+        </div>
+      </div>
+    }
+  }
   render = () => {
     return <div id="halls">
-      <MyModal
-        header="Создание зала"
-        closeModal={this.closeModal}
-        isOpen={this.state.modalHallIsOpen}
-        emptyFooter="true"
-      >
-        <CreateHallForm {...this.props} closeModal={this.closeModal}/>
-      </MyModal>
       <div className="wrapper wrapper-content animated fadeInRight">
-        <div className="ibox">
-          <div className="ibox-content">
-            <button className="btn btn-default" onClick={this.openModal}>Создать зал</button>
-          </div>
-        </div>
+        {this.renderAdd()}
         {this.renderHalls()}
       </div>
     </div>

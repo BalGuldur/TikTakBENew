@@ -74,4 +74,14 @@ export function editPlace(place) {
     })
   }
 }
+export function clickPlace(place) {
+  return (dispatch, getState) => {
+    let { choosed_places } = getState()
+    console.log('click place')
+    if (~choosed_places.indexOf(place.id))
+      dispatch({type: types.UNCHOOSE_PLACE, place})
+    else
+      dispatch({type: types.CHOOSE_PLACE, place})
+  }
+}
 

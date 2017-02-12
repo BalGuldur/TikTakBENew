@@ -23,23 +23,22 @@ class Hall extends Component {
     this.props.deleteHall(this.props.hall)
   }
 
-  renderButton = () =>
-    <div>
-      <i
-        className="fa btn btn-sm btn-danger small inline pull-right fa-trash"
-        onClick={this.deleteHall}
-      ></i>
-      <i
-        className="fa btn btn-sm btn-primary small inline pull-right fa-pencil"
-        onClick={this.editHall}
-      ></i>
-    </div>
-  renderPlaces = () => <Places {...this.props} />
-  render = () => {
-    let hall = this.props.hall
-
-    return <div className="col-md-6 col-lg-4">
-      <MyModal
+  renderButton = () => {
+    if (this.props.config_mode == "true") {
+      return <div>
+        <i
+          className="fa btn btn-sm btn-danger small inline pull-right fa-trash"
+          onClick={this.deleteHall}
+        ></i>
+        <i
+          className="fa btn btn-sm btn-primary small inline pull-right fa-pencil"
+          onClick={this.editHall}
+        ></i>
+      </div> }
+  }
+  renderAddButton = () => {
+    if (this.props.config_mode == "true") {
+      return <MyModal
         header="Редактирование Зала"
         isOpen={this.state.editModalIsOpen}
         closeModal={this.closeModal}
@@ -47,6 +46,14 @@ class Hall extends Component {
       >
         <EditHallForm {...this.props} closeModal={this.closeModal} />
       </MyModal>
+    }
+  }
+  renderPlaces = () => <Places {...this.props} />
+  render = () => {
+    let hall = this.props.hall
+
+    return <div className="col-md-6 col-lg-4">
+      {this.renderAddButton()}
       <div className="ibox">
         <div className="ibox-title">
           <div className="row">

@@ -5,6 +5,7 @@ class MainController < ApplicationController
 
   def index
     navigation_items = [
+        {id: 6, title: 'Рабочий стол', link: '/work_window', icon: 'fa fa-coffee'},
         {id: 1, title: 'Первый пункт', link: '/', icon: 'fa fa-camera'},
         {id: 2, title: 'Заведения', link: '/locations', icon: 'fa fa-building-o'},
         {id: 3, title: 'Сотрудники', link: '/employees', icon: 'fa fa-child'},

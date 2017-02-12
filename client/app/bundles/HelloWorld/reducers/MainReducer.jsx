@@ -133,6 +133,16 @@ function places(state = '', action) {
       return state;
   }
 }
+function choosed_places(state = '', action) {
+  switch (action.type) {
+    case types.CHOOSE_PLACE:
+      return [...state, action.place.id]
+    case types.UNCHOOSE_PLACE:
+      return state.filter(element => element != action.place.id)
+    default:
+      return state;
+  }
+}
 function menu_departments(state = '', action) {
   switch (action.type) {
     case types.SET_MENU_DEPARTMENTS:
@@ -227,6 +237,7 @@ const MainReducer = combineReducers({
   halls,
   halls_to_places,
   places,
+  choosed_places,
   menu_departments,
   menu_dep_to_menu_cat,
   menu_categories,

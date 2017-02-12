@@ -44,6 +44,7 @@ class MenuItems extends Component {
             elementForm={this.menuItemForm}
             elements={menu_items}
             renderElement={this.renderMenuItem}
+            config_mode={this.props.config_mode}
           />
     </div>
   }

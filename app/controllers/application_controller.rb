@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
         when current_user.employees.count == 1
           set_current_company current_user.employees.first.company
           set_current_employee current_user.employees.first
+          configure_current_tenant
         when (current_user.employees.count > 1 and current_company.blank?)
           puts "current_company #{current_company.as_json}"
           redirect_to select_company_path

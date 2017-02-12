@@ -19,6 +19,7 @@ export const DELETE_PLACE = 'DELETE_PLACE';
 export const EDIT_PLACE = 'EDIT_PLACE';
 export const CHOOSE_PLACE = 'CHOOSE_PLACE';
 export const UNCHOOSE_PLACE = 'UNCHOOSE_PLACE';
+export const ERASE_CHOOSED_PLACE = 'ERASE_CHOOSED_PLACE';
 export const SET_MENU_DEPARTMENTS = 'SET_MENU_DEPARTMENTS';
 export const ADD_MENU_DEPARTMENT = 'ADD_MENU_DEPARTMENT';
 export const DELETE_MENU_DEPARTMENT = 'DELETE_MENU_DEPARTMENT';
@@ -32,5 +33,6 @@ export const ADD_MENU_ITEM = 'ADD_MENU_ITEM';
 export const DELETE_MENU_ITEM = 'DELETE_MENU_ITEM';
 export const EDIT_MENU_ITEM = 'EDIT_MENU_ITEM';
 export const SET_VISITS = 'SET_VISITS';
+export const ADD_VISIT = "ADD_VISIT";
 
 export const LOG = 'LOG';

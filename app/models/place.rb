@@ -4,6 +4,7 @@ class Place < ApplicationRecord
   # default_scope { where(deleted: false) }
 
   belongs_to :hall
+  has_and_belongs_to_many :visits
 
   def self.front_view
     # TODO: Проверить количество SQL запросов

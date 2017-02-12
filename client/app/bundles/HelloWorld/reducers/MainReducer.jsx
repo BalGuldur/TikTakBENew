@@ -139,6 +139,8 @@ function choosed_places(state = '', action) {
       return [...state, action.place.id]
     case types.UNCHOOSE_PLACE:
       return state.filter(element => element != action.place.id)
+    case types.ERASE_CHOOSED_PLACE:
+      return '';
     default:
       return state;
   }
@@ -223,6 +225,16 @@ function visits(state = '', action) {
   switch (action.type) {
     case types.SET_VISITS:
       return action.visits;
+    case types.ADD_VISIT:
+      return Object.assign({}, state, {[action.data.id]: action.data})
+    default:
+      return state;
+  }
+}
+function place_to_visits(state = '', action) {
+  switch (action.type) {
+    case types.SET_VISITS:
+      return action.place_to_visits;
     default:
       return state;
   }
@@ -252,6 +264,7 @@ const MainReducer = combineReducers({
   menu_cat_to_menu_items,
   menu_items,
   visits,
+  place_to_visits,
 });
 
 export default MainReducer;

@@ -14,6 +14,8 @@ class WorkWindow extends Component {
       openInformation: {},
     }
   }
+  componentDidMount() { this.props.initialUserSubscriptions() }
+  componentWillUnmount() { this.props.cancelAllUserSubscriptions() }
 
   disabledOpenButton = () => {if(this.props.choosed_places.length > 0) return "false"; else return "true"}
 

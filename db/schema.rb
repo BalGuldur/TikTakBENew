@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212131214) do
+ActiveRecord::Schema.define(version: 20170212145756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,13 @@ ActiveRecord::Schema.define(version: 20170212131214) do
     t.datetime "deleted_at"
     t.index ["deleted"], name: "index_places_on_deleted", using: :btree
     t.index ["hall_id"], name: "index_places_on_hall_id", using: :btree
+  end
+
+  create_table "places_visits", id: false, force: :cascade do |t|
+    t.integer "visit_id", null: false
+    t.integer "place_id", null: false
+    t.index ["place_id", "visit_id"], name: "index_places_visits_on_place_id_and_visit_id", using: :btree
+    t.index ["visit_id", "place_id"], name: "index_places_visits_on_visit_id_and_place_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

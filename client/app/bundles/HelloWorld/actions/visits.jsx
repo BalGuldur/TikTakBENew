@@ -11,7 +11,7 @@ export function fetchVisits() {
       method: 'GET',
       success: (data) => {
         console.log('success fetch visits')
-        dispatch({type: types.SET_VISITS, visits: data.visits,})
+        dispatch({type: types.SET_VISITS, visits: data.visits, place_to_visits: data.place_to_visits,})
         // dispatch({type: types.SET_HALLS_TO_PLACES, halls_to_places: data.halls_to_places})
       },
       errors: (data) => {
@@ -28,8 +28,15 @@ export function openVisit(visit) {
       url: '/visits',
       method: 'POST',
       data: visit,
-      success: (data) => { console.log('succes open visit') },
+      success: (data) => {
+        console.log('succes open visit')
+        dispatch({type: types.ERASE_CHOOSED_PLACE})
+      },
       errors: (data) => { console.log('error open visit') },
     })
   }
+}
+export function addVisit(data) {
+  console.log(data)
+  return {type: types.ADD_VISIT, data: data}
 }

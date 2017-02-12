@@ -1,32 +1,37 @@
 class Visit < ApplicationRecord
   acts_as_paranoid column: :deleted, sentinel_value: false
 
+  scope :todays, -> { where(opened_at: DateTime.now.to_date..(DateTime.now.to_date + 1.day))}
+
   before_save :set_default
 
   belongs_to :location
+  has_and_belongs_to_many :places
   # has_many :menu_items, dependent: :destroy
 
   def self.front_view
-    visits = all # .includes()
+    visits = all.includes(:places) # .includes()
     front_visits = {}
-    # front_menu_cat_to_menu_items = {}
-    visits.each {|m_c| front_visits.merge! m_c.front_view_with_key}
-    # visits.each {|m_c| front_menu_cat_to_menu_items.merge!(m_c.id => m_c.menu_item_ids)}
+    front_place_to_visits = {}
+    places = Place.joins(:visits).where(visits: {id: visits.ids})
+    visits.each {|visit| front_visits.merge! visit.front_view_with_key}
+    places.each {|place| front_place_to_visits.merge!(place.id => place.visit_ids)}
     # result_halls_to_places = {}
     # halls.each {|hall| result_halls_to_places.merge!({hall.id => hall.place_ids})}
     {
         visits: front_visits,
+        place_to_visits: front_place_to_visits,
         # menu_cat_to_menu_items: front_menu_cat_to_menu_items,
         # halls_to_places: result_halls_to_places,
     }
   end
 
   def front_view_with_key
-    { id => as_json }
+    { id => front_view }
   end
 
   def front_view
-    as_json
+    as_json(methods: [:place_ids])
   end
 
   private

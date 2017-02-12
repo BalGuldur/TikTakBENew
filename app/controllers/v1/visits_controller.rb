@@ -9,8 +9,7 @@ class V1::VisitsController < V1::BaseController
 
   def today
   #   TODO: сделать смену
-    day_now = DateTime.now.to_date
-    visits = current_location.visits.where(opened_at: day_now..(day_now + 1.day))
+    visits = current_location.visits.todays
     render json: visits.front_view, status: :ok
   end
 
@@ -22,6 +21,7 @@ class V1::VisitsController < V1::BaseController
       # Обновлем тлоько на клиенте с помощью вызова самого action
       success_action
       render json: @visit.front_view, status: :ok
+      broadcast('/broadcast', {action: 'addVisit', data: @visit})
     else
       error_action
       render json: @visit.errors, status: 400
@@ -57,7 +57,7 @@ class V1::VisitsController < V1::BaseController
   end
 
   def visit_params
-    params.permit(:qty_people, :opened, :opened_at, :booked, :booked_at, :closed, :closed_at, :deleted, :deleted_at)
+    params.permit(:qty_people, :opened, :opened_at, :booked, :booked_at, :closed, :closed_at, :deleted, :deleted_at, place_ids: [])
   end
 
   def success_action

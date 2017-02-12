@@ -4,6 +4,7 @@ import ButtonWithChild from '../base_containers/CRUD/ButtonWithChild'
 import StandartForm from '../base_containers/StandartForm'
 import OpenPlaceForm from './OpenPlaceForm'
 import IBox from '../layouts/IBox'
+import Visits from '../visits/VisitsContainer'
 
 class WorkWindow extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class WorkWindow extends Component {
   modalSubmit = () => {
     console.log('Open place log')
     console.log({...this.state.openInformation, place_ids: this.props.choosed_places})
+    this.props.openVisit({...this.state.openInformation, place_ids: this.props.choosed_places})
   }
   handleChange = (key, e) => {
     let element = {}
@@ -38,8 +40,11 @@ class WorkWindow extends Component {
       modalSubmitTitle="Открыть"
       disabled={this.disabledOpenButton()}
     >
-      <OpenPlaceForm handleChange={this.handleChange} element={this.state.openInformation}/>
+      <div className="row">
+        <OpenPlaceForm handleChange={this.handleChange} element={this.state.openInformation}/>
+      </div>
     </ButtonWithChild>
+    <Visits/>
     <Halls/>
   </div>
   }

@@ -31,6 +31,6 @@ export const SET_MENU_ITEMS = 'SET_MENU_ITEMS';
 export const ADD_MENU_ITEM = 'ADD_MENU_ITEM';
 export const DELETE_MENU_ITEM = 'DELETE_MENU_ITEM';
 export const EDIT_MENU_ITEM = 'EDIT_MENU_ITEM';
-
+export const SET_VISITS = 'SET_VISITS';
 
 export const LOG = 'LOG';

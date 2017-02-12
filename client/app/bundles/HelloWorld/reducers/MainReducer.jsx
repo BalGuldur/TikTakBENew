@@ -219,6 +219,14 @@ function menu_items(state = '', action) {
       return state;
   }
 }
+function visits(state = '', action) {
+  switch (action.type) {
+    case types.SET_VISITS:
+      return action.visits;
+    default:
+      return state;
+  }
+}
 // Object.assign({}, state, action.data)
 // {...state, hall}
 
@@ -243,6 +251,7 @@ const MainReducer = combineReducers({
   menu_categories,
   menu_cat_to_menu_items,
   menu_items,
+  visits,
 });
 
 export default MainReducer;

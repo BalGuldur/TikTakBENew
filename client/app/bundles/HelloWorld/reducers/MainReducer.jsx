@@ -227,6 +227,8 @@ function visits(state = '', action) {
       return action.visits;
     case types.ADD_VISIT:
       return Object.assign({}, state, {[action.data.id]: action.data})
+    case types.CLOSE_VISIT:
+      return baseActions.deleteElement(state, action.data.id.toString())
     default:
       return state;
   }
@@ -241,8 +243,13 @@ function place_to_visits(state = '', action) {
         let old_state = state[place_id] || []
         result[place_id] = [...old_state, action.data.id]
       })
-      console.log(result)
       return {...state, ...result};
+    case types.CLOSE_VISIT:
+      let closed = {}
+      action.data.place_ids.map((place_id) => {
+        closed[place_id] = state[place_id].filter(element => element != action.data.id);
+      })
+      return {...state, ...closed};
     default:
       return state;
   }

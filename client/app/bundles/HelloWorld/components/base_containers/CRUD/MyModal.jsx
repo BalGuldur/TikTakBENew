@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import Modal from 'react-bootstrap-modal'
+import * as lib from '../../../lib'
 
 // isOpen - "true" or "false" - state modal
 // header - text - Заголовок модалки
 // modalSubmit - function - событие при submit
 // modalClose - function - change state modal in parent
 // children - отображаемое в Body модалки
+// hideFooter - "true" "false" - скрытие footer
 class MyModal extends Component {
   constructor(props) {
     super(props)
@@ -18,21 +20,24 @@ class MyModal extends Component {
 
   renderFooter = () => {
     let submitTitle = this.props.submitTitle || "Применить"
+    let hideFooter = lib.propToBool(this.props.hideFooter)
 
-    return <Modal.Footer>
-      <Modal.Dismiss
-        className="btn btn-default"
-        onClick={this.props.modalClose}
-      >
-        Отмена
-      </Modal.Dismiss>
-      <button
-        className="btn btn-primary"
-        onClick={this.modalSubmit}
-      >
-        {submitTitle}
-      </button>
-    </Modal.Footer>
+    if (!hideFooter) {
+      return <Modal.Footer>
+        <Modal.Dismiss
+          className="btn btn-default"
+          onClick={this.props.modalClose}
+        >
+          Отмена
+        </Modal.Dismiss>
+        <button
+          className="btn btn-primary"
+          onClick={this.modalSubmit}
+        >
+          {submitTitle}
+        </button>
+      </Modal.Footer>
+    } else { return ""}
   }
   render = () => {
     let header = this.props.header || ""

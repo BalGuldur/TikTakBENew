@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :visits, only: [:create, :destroy, :update] do
       get 'index', on: :collection
       get 'today', on: :collection
+      get 'close', on: :member
     end
     resources :menu_items, only: [:create, :destroy, :update] do
       get 'index', on: :collection

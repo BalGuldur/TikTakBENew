@@ -41,3 +41,21 @@ export const addVisit = (data) => ({
   type: types.ADD_VISIT,
   data,
 });
+export function closeVisit(visit) {
+  return (dispatch) => {
+    console.log('delete visit')
+
+    fetchDataClean({
+      url: '/visits/' + visit.id + '/close',
+      method: 'GET',
+      success: (data) => {
+        console.log('success close visit')
+      },
+      errors: (data) => { console.log('error close visit') },
+    })
+  }
+}
+export const close_visit = (data) => ({
+  type: types.CLOSE_VISIT,
+  data,
+})

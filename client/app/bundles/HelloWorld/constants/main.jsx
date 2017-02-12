@@ -34,5 +34,6 @@ export const DELETE_MENU_ITEM = 'DELETE_MENU_ITEM';
 export const EDIT_MENU_ITEM = 'EDIT_MENU_ITEM';
 export const SET_VISITS = 'SET_VISITS';
 export const ADD_VISIT = "ADD_VISIT";
+export const CLOSE_VISIT = "CLOSE_VISIT";
 
 export const LOG = 'LOG';

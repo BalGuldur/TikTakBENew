@@ -1,7 +1,7 @@
 class V1::VisitsController < V1::BaseController
   before_action :check_current_location
   before_action :set_action_log
-  before_action :set_visit, only: [:update, :destroy]
+  before_action :set_visit, only: [:update, :destroy, :close]
 
   def index
     render json: current_location.visits.front_view, status: :ok
@@ -9,7 +9,7 @@ class V1::VisitsController < V1::BaseController
 
   def today
   #   TODO: сделать смену
-    visits = current_location.visits.todays
+    visits = current_location.visits #.todays
     render json: visits.front_view, status: :ok
   end
 
@@ -33,6 +33,17 @@ class V1::VisitsController < V1::BaseController
       error_action
       puts "Create Visit error"
       render json: {errors: "Has opened place ("}, status: 400
+    end
+  end
+
+  def close
+    if @visit.update opened: false, closed: true, closed_at: DateTime.now
+      success_action
+      render json: @visit.front_view, status: :ok
+      broadcast('/broadcast', {action: 'close_visit', data: @visit.front_view})
+    else
+      error_action
+      render json: @visit.errors, status: 400
     end
   end
 

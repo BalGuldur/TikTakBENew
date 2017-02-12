@@ -7,6 +7,13 @@ class V1::VisitsController < V1::BaseController
     render json: current_location.visits.front_view, status: :ok
   end
 
+  def today
+  #   TODO: сделать смену
+    day_now = DateTime.now.to_date
+    visits = current_location.visits.where(opened_at: day_now..(day_now + 1.day))
+    render json: visits.front_view, status: :ok
+  end
+
   def create
     @visit = Visit.new(visit_params)
     @visit.location = current_location

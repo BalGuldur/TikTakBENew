@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   api_version(module: "V1", path: {value: "v1"}, default: true) do # RuboCop::Disable Metrics/BlockLength
     resources :visits, only: [:create, :destroy, :update] do
       get 'index', on: :collection
+      get 'today', on: :collection
     end
     resources :menu_items, only: [:create, :destroy, :update] do
       get 'index', on: :collection

@@ -235,6 +235,14 @@ function place_to_visits(state = '', action) {
   switch (action.type) {
     case types.SET_VISITS:
       return action.place_to_visits;
+    case types.ADD_VISIT:
+      let result = {}
+      action.data.place_ids.map((place_id) => {
+        let old_state = state[place_id] || []
+        result[place_id] = [...old_state, action.data.id]
+      })
+      console.log(result)
+      return {...state, ...result};
     default:
       return state;
   }

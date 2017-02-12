@@ -14,17 +14,25 @@ class V1::VisitsController < V1::BaseController
   end
 
   def create
-    @visit = Visit.new(visit_params)
-    @visit.location = current_location
-    if @visit.save
-      # Broadcats не делаем, т.к. это редко используемый элемент
-      # Обновлем тлоько на клиенте с помощью вызова самого action
-      success_action
-      render json: @visit.front_view, status: :ok
-      broadcast('/broadcast', {action: 'addVisit', data: @visit})
+    puts "visit_params #{visit_params[:place_ids]}"
+    puts "free? #{Place.where(id: visit_params[:place_ids]).free?}"
+    if Place.where(id: visit_params[:place_ids]).free?
+      @visit = Visit.new(visit_params)
+      @visit.location = current_location
+      if @visit.save
+        # Broadcats не делаем, т.к. это редко используемый элемент
+        # Обновлем тлоько на клиенте с помощью вызова самого action
+        success_action
+        render json: @visit.front_view, status: :ok
+        broadcast('/broadcast', {action: 'addVisit', data: @visit.front_view})
+      else
+        error_action
+        render json: @visit.errors, status: 400
+      end
     else
       error_action
-      render json: @visit.errors, status: 400
+      puts "Create Visit error"
+      render json: {errors: "Has opened place ("}, status: 400
     end
   end
 
@@ -65,6 +73,6 @@ class V1::VisitsController < V1::BaseController
   end
 
   def error_action
-    @action_lod.update success: false
+    @action_log.update success: false
   end
 end

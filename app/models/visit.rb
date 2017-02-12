@@ -2,6 +2,7 @@ class Visit < ApplicationRecord
   acts_as_paranoid column: :deleted, sentinel_value: false
 
   scope :todays, -> { where(opened_at: DateTime.now.to_date..(DateTime.now.to_date + 1.day))}
+  scope :opened, -> { where(opened: true)}
 
   before_save :set_default
 
@@ -31,10 +32,14 @@ class Visit < ApplicationRecord
   end
 
   def front_view
-    as_json(methods: [:place_ids])
+    as_json(methods: [:place_ids, :opened_at_time])
   end
 
   private
+
+  def opened_at_time
+    opened_at.to_s(:time)
+  end
 
   def set_default
     default_obj = {}

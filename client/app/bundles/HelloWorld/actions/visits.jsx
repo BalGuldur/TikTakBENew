@@ -31,12 +31,13 @@ export function openVisit(visit) {
       success: (data) => {
         console.log('succes open visit')
         dispatch({type: types.ERASE_CHOOSED_PLACE})
+        dispatch
       },
       errors: (data) => { console.log('error open visit') },
     })
   }
 }
-export function addVisit(data) {
-  console.log(data)
-  return {type: types.ADD_VISIT, data: data}
-}
+export const addVisit = (data) => ({
+  type: types.ADD_VISIT,
+  data,
+});

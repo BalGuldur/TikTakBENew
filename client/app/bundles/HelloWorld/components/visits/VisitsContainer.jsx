@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../actions/visits'
+import Halls from '../new_halls/HallsContainer'
 
 class Visits extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Visits extends Component {
   componentWillMount = () => { console.log('fetch visits'); this.props.fetchVisits(); }
 
   render = () =>
-    <div>Test Visits</div>
+    <Halls/>
 }
 
 const mapStateToProps = (state) => ({visits: state.visits})

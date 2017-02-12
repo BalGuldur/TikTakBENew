@@ -8,21 +8,33 @@ class Place < ApplicationRecord
 
   def self.front_view
     # TODO: Проверить количество SQL запросов
-    places = all
+    places = all.includes(:visits, :places_visits)
     result = {}
     places.each {|place| result.merge! place.front_view}
     result
   end
 
   def front_view
-    {self.id => self.as_json}
+    {id => as_json}
   end
 
   def safe_destroy
     destroy
   end
 
+  def opened?
+    visits.opened.empty? ? false : true
+  end
+
+  def self.free?
+    Place.joins(:visits).where(id: ids, visits: {opened: true}).empty?
+  end
+
   private
+
+  # def opened
+  #   visits.opened.empty? ? false : true
+  # end
 
   def paranoia_restore_attributes
     {

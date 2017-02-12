@@ -23,3 +23,13 @@ export function propToBool(prop) {
       return false
   }
 }
+export function filterByKeys(obj, keys_arr) {
+  var result = {}
+  Object.keys(obj).map((key) => {
+    if(~keys_arr.indexOf(key.toString())) {
+      console.log('filter key ' + key + " " + obj[key])
+      result[key] = obj[key]
+    }
+  })
+  return result
+}

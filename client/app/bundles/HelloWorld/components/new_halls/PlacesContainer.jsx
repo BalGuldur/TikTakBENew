@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import * as lib from '../../lib'
 import Place from './Place'
 import _PlaceForm from './_PlaceForm'
-// import IBox from '../layouts/IBox'
 import CollectionContainer from '../base_containers/CollectionContainer'
 import * as actions from '../../actions/places'
+import Visits from './VisitsContainer'
 
 
 class Places extends Component {
@@ -32,13 +32,21 @@ class Places extends Component {
       <_PlaceForm handleChange={handleChange} element={element}/>
     </div>
   }
-  renderPlace = (element, CRUD) =>
-    <li className={"list-group-item" + this.choosedStyle(element)}>
-      <div className="row">
-        <Place element={element} clickPlace={this.props.clickPlace.bind(this, element)}/>
-        <div className="col-xs-2 pull-right">{CRUD()}</div>
+  renderPlace = (element, CRUD) => {
+    return <div className={"col-xs-6 col-md-4 col-lg-3" + this.choosedStyle(element)}>
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <div className="row">
+            <Place element={element} clickPlace={this.props.clickPlace.bind(this, element)}/>
+            <div className="col-xs-2 pull-right">{CRUD()}</div>
+          </div>
+        </div>
+        <div className="panel-body">
+          <Visits place={element} />
+        </div>
       </div>
-    </li>
+    </div>
+  }
   render = () => {
     let places = lib.filterByKeysValues(
       this.props.places || {},
@@ -48,7 +56,7 @@ class Places extends Component {
 
     // collectionLayout={this.collectionLayout}
     return <div id="places">
-      <ul className="list-group">
+      <div className="row">
           <CollectionContainer
             handleCreate={this.handleCreate}
             handleDelete={this.handleDelete}
@@ -59,11 +67,14 @@ class Places extends Component {
             renderElement={this.renderPlace}
             config_mode={this.configMode()}
           />
-      </ul>
+      </div>
     </div>
   }
 }
 
-const mapStateToProps = (state) => ({places: state.places, choosed_places: state.choosed_places})
+const mapStateToProps = (state) => ({
+  places: state.places,
+  choosed_places: state.choosed_places,
+})
 
 export default connect(mapStateToProps, actions)(Places)

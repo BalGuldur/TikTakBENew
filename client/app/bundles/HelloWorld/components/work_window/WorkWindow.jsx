@@ -47,7 +47,6 @@ class WorkWindow extends Component {
       </div>
     </ButtonWithChild>
     <Visits/>
-    <Halls/>
   </div>
   }
 }

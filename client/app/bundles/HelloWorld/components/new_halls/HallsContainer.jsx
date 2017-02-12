@@ -50,6 +50,8 @@ class Halls extends Component {
     //     {'menu_department_id': this.props.menu_department_id}
     //   ) || {}
     let halls = this.props.halls
+    let visits = this.props.visits
+    let place = this.props.place_to_visits
     // let newElement = {menu_department_id: this.props.menu_department_id}
     let newElement = {title: ""}
 
@@ -69,6 +71,9 @@ class Halls extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({halls: state.halls, halls_to_places: state.halls_to_places})
+const mapStateToProps = (state) => ({
+  halls: state.halls,
+  halls_to_places: state.halls_to_places,
+})
 
 export default connect(mapStateToProps, actions)(Halls)

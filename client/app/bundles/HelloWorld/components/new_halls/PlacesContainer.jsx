@@ -20,11 +20,18 @@ class Places extends Component {
   handleDelete = (element) => { console.log('deleteElement'); this.props.deletePlace(element) }
   handleEdit = (element) => { console.log('deleteElement'); this.props.editPlace(element) }
 
+  choosedStyle = (element) => {
+    if (~this.props.choosed_places.indexOf(element.id))
+      return " bg-muted"
+    else
+      return ""
+  }
+
   placeForm = (handleChange, element) => {
     return <_PlaceForm handleChange={handleChange} element={element}/>
   }
   renderPlace = (element, CRUD) =>
-    <li className="list-group-item">
+    <li className={"list-group-item" + this.choosedStyle(element)}>
       <div className="row">
         <Place element={element} clickPlace={this.props.clickPlace.bind(this, element)}/>
         <div className="col-xs-2 pull-right">{CRUD()}</div>
@@ -48,7 +55,7 @@ class Places extends Component {
             elementForm={this.placeForm}
             elements={places}
             renderElement={this.renderPlace}
-            config_mode={this.props.config_mode}
+            config_mode={this.configMode()}
           />
       </ul>
     </div>

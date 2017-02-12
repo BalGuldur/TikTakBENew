@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MyModal from './MyModal'
+import { propToBool } from '../../../lib'
 
 // buttonTitle - text - Надпись после кнопки
 // buttonIcon - text - "fa fa-plus" - иконка кнопки
@@ -20,8 +21,12 @@ class ButtonWithChild extends Component {
     }
   }
 
-  changeOpen = () => {this.setState({modalIsOpen: !this.state.modalIsOpen})}
+  changeOpen = () => {
+    if(!this.disabledProp()) this.setState({modalIsOpen: !this.state.modalIsOpen})
+  }
   modalClose = () => {this.setState({modalIsOpen: false})}
+  disabledProp = () => { return propToBool(this.props.disabled) }
+  disabledStyle = () => { return this.disabledProp() ? " disabled" : ""}
 
   displayForm = () => {
     if(this.state.modalIsOpen) {
@@ -73,7 +78,7 @@ class ButtonWithChild extends Component {
   render = () => {
     let buttonTitle = this.props.buttonTitle || "";
     let buttonIcon = this.props.buttonIcon || "fa fa-plus"
-    let buttonStyle = this.props.buttonStyle || "btn btn-default"
+    let buttonStyle = (this.props.buttonStyle || "btn btn-default") + this.disabledStyle()
 
     return <div className="inline">
       <div>

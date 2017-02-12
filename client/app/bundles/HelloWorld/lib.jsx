@@ -10,3 +10,16 @@ export function filterByKeysValues(obj, keys_values) {
   })
   return result
 }
+export function ArrHasEl(arr, el) {
+  return ~arr.indexOf(el)
+}
+export function propToBool(prop) {
+  switch (prop) {
+    case "true":
+      return true
+    case "false":
+      return false
+    default:
+      return false
+  }
+}

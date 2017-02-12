@@ -28,7 +28,9 @@ class Places extends Component {
   }
 
   placeForm = (handleChange, element) => {
-    return <_PlaceForm handleChange={handleChange} element={element}/>
+    return <div className="row">
+      <_PlaceForm handleChange={handleChange} element={element}/>
+    </div>
   }
   renderPlace = (element, CRUD) =>
     <li className={"list-group-item" + this.choosedStyle(element)}>

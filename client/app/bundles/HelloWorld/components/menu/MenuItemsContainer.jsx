@@ -17,7 +17,9 @@ class MenuItems extends Component {
   handleEdit = (element) => { console.log('deleteElement'); this.props.editMenuItem(element) }
 
   menuItemForm = (handleChange, element) => {
-    return <_MenuItemForm handleChange={handleChange} element={element}/>
+    return <div className="row">
+      <_MenuItemForm handleChange={handleChange} element={element}/>
+    </div>
   }
   renderMenuItem = (menuItem, CRUD) =>
     <div>

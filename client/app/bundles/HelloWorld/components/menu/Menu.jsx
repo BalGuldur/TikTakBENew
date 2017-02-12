@@ -42,7 +42,9 @@ class Menu extends Component {
     }
   }
   renderDepartmentForm = (handleChange, element) => {
-    return <_DepartmentForm handleChange={handleChange} {...element}/>
+    return <div className="row">
+      <_DepartmentForm handleChange={handleChange} {...element}/>
+    </div>
   }
   renderDepartmentModal = () => {
     if (this.state.config_mode == "true") {

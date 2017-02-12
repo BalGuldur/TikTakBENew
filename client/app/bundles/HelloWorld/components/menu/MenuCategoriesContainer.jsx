@@ -19,7 +19,9 @@ class MenuCategories extends Component {
   handleEdit = (element) => { console.log('deleteElement'); this.props.editMenuCategory(element) }
 
   categoryForm = (handleChange, element) => {
-    return <_MenuCategoryForm handleChange={handleChange} element={element}/>
+    return <div className="row">
+      <_MenuCategoryForm handleChange={handleChange} element={element}/>
+    </div>
   }
   renderMenuCategory = (menuCategory, CRUD) => {
     let title = () => {

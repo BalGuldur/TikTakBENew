@@ -24,7 +24,9 @@ class Halls extends Component {
   handleClickPlace = (place) => { this.props.handleClickPlace(place) }
 
   categoryForm = (handleChange, element) => {
-    return <_HallForm handleChange={handleChange} element={element}/>
+    return <div className="row">
+      <_HallForm handleChange={handleChange} element={element}/>
+    </div>
   }
   renderHall = (hall, CRUD) => {
     let title = () => {

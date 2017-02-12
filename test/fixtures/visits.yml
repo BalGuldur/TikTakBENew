@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  qty_people: 1
+  opened: false
+  opened_at: 2017-02-12 16:12:14
+  booking: false
+  book_start: 2017-02-12 16:12:14
+  closed: false
+  closed_at: 2017-02-12 16:12:14
+  location: one
+  deleted: false
+  deleted_at: 2017-02-12 16:12:14
+
+two:
+  qty_people: 1
+  opened: false
+  opened_at: 2017-02-12 16:12:14
+  booking: false
+  book_start: 2017-02-12 16:12:14
+  closed: false
+  closed_at: 2017-02-12 16:12:14
+  location: two
+  deleted: false
+  deleted_at: 2017-02-12 16:12:14

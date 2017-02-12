@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210192313) do
+ActiveRecord::Schema.define(version: 20170212131214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,26 @@ ActiveRecord::Schema.define(version: 20170210192313) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.integer  "qty_people"
+    t.boolean  "opened"
+    t.datetime "opened_at"
+    t.boolean  "booked"
+    t.datetime "book_start"
+    t.boolean  "closed"
+    t.datetime "closed_at"
+    t.integer  "location_id"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["booked"], name: "index_visits_on_booked", using: :btree
+    t.index ["closed"], name: "index_visits_on_closed", using: :btree
+    t.index ["deleted"], name: "index_visits_on_deleted", using: :btree
+    t.index ["location_id"], name: "index_visits_on_location_id", using: :btree
+    t.index ["opened"], name: "index_visits_on_opened", using: :btree
+  end
+
   add_foreign_key "action_logs", "companies"
   add_foreign_key "action_logs", "employees"
   add_foreign_key "employees", "companies"
@@ -164,4 +184,5 @@ ActiveRecord::Schema.define(version: 20170210192313) do
   add_foreign_key "menu_items", "menu_categories"
   add_foreign_key "omni_auth_accounts", "users"
   add_foreign_key "places", "halls"
+  add_foreign_key "visits", "locations"
 end

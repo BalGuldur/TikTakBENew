@@ -3,6 +3,7 @@ class Visit < ApplicationRecord
 
   scope :todays, -> { where(opened_at: DateTime.now.to_date..(DateTime.now.to_date + 1.day))}
   scope :opened, -> { where(opened: true)}
+  scope :booked, -> { where(booked: true, opened: false)}
 
   before_save :set_default
 
@@ -32,13 +33,17 @@ class Visit < ApplicationRecord
   end
 
   def front_view
-    as_json(methods: [:place_ids, :opened_at_time])
+    as_json(methods: [:place_ids, :opened_at_time, :book_start_time])
   end
 
   private
 
   def opened_at_time
-    opened_at.to_s(:time)
+    opened_at && opened_at.to_s(:time)
+  end
+
+  def book_start_time
+    book_start && book_start.to_s(:time)
   end
 
   def set_default

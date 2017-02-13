@@ -3,6 +3,7 @@ import Halls from '../new_halls/HallsContainer'
 import ButtonWithChild from '../base_containers/CRUD/ButtonWithChild'
 import StandartForm from '../base_containers/StandartForm'
 import OpenPlaceForm from './OpenPlaceForm'
+import BookingPlaceForm from './BookingPlaceForm'
 import IBox from '../layouts/IBox'
 import Visits from '../visits/VisitsContainer'
 
@@ -12,22 +13,33 @@ class WorkWindow extends Component {
 
     this.state = {
       openInformation: {},
+      bookingInformation: {booked: true, opened:false},
     }
   }
   componentDidMount() { this.props.initialUserSubscriptions() }
   componentWillUnmount() { this.props.cancelAllUserSubscriptions() }
 
   disabledOpenButton = () => {if(this.props.choosed_places.length > 0) return "false"; else return "true"}
+  disabledBookingButton = () => {if(this.props.choosed_places.length > 0) return "false"; else return "true"}
 
-  modalSubmit = () => {
-    console.log('Open place log')
-    console.log({...this.state.openInformation, place_ids: this.props.choosed_places})
+  modalOpenSubmit = () => {
     this.props.openVisit({...this.state.openInformation, place_ids: this.props.choosed_places})
+    this.setState({openInformation: {}})
   }
-  handleChange = (key, e) => {
+  modalBookingSubmit = () => {
+    this.props.openVisit({...this.state.bookingInformation, place_ids: this.props.choosed_places})
+    this.setState({bookingInformation: {booked: true, opened: false}})
+  }
+  handleOpenChange = (key, e) => {
     let element = {}
-    element[key] = e.target.value
+    key!="book_start" ? element[key] = e.target.value : element[key] = e
     this.setState({openInformation: Object.assign({}, this.state.openInformation, element)})
+    // this.setState({editedElement: element})
+  }
+  handleBookingChange = (key, e) => {
+    let element = {}
+    key!="book_start" ? element[key] = e.target.value : element[key] = e
+    this.setState({bookingInformation: Object.assign({}, this.state.bookingInformation, element)})
     // this.setState({editedElement: element})
   }
 
@@ -38,12 +50,25 @@ class WorkWindow extends Component {
       buttonStyle="btn btn-default"
       childrenType="modal"
       modalHeader="Открыть стол"
-      modalSubmit={this.modalSubmit}
+      modalSubmit={this.modalOpenSubmit}
       modalSubmitTitle="Открыть"
       disabled={this.disabledOpenButton()}
     >
       <div className="row">
-        <OpenPlaceForm handleChange={this.handleChange} element={this.state.openInformation}/>
+        <OpenPlaceForm handleChange={this.handleOpenChange} element={this.state.openInformation}/>
+      </div>
+    </ButtonWithChild>
+    <ButtonWithChild
+      buttonTitle="Забронировать на сегодня"
+      buttonStyle="btn btn-default"
+      childrenType="modal"
+      modalHeader="Забронировать стол"
+      modalSubmit={this.modalBookingSubmit}
+      modalSubmitTitle="Забронировать"
+      disabled={this.disabledBookingButton()}
+    >
+      <div className="row">
+        <BookingPlaceForm handleChange={this.handleBookingChange} element={this.state.bookingInformation}/>
       </div>
     </ButtonWithChild>
     <Visits/>

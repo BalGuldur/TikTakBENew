@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/visits'
 import MyModal from '../base_containers/CRUD/MyModal'
 import VisitOpenMenu from './VisitOpenMenu'
+import VisitBookedMenu from './VisitBookedMenu'
 
 class Visits extends Component {
   constructor(props) {
@@ -10,18 +11,26 @@ class Visits extends Component {
 
     this.state = {
       currentVisit: {},
-      visitModalIsOpen: false,
+      openVisitModalIsOpen: false,
+      bookedVisitModalIsOpen: false,
     }
   }
 
   openModal = (visit) => {
-    this.setState({
-      currentVisit: visit,
-      visitModalIsOpen: true,
-    })
+    if (visit.opened) {
+      this.setState({
+        currentVisit: visit,
+        openVisitModalIsOpen: true,
+      })
+    } else {
+      this.setState({
+        currentVisit: visit,
+        bookedVisitModalIsOpen: true,
+      })
+    }
   }
   closeModal = () => {
-    this.setState({currentVisit: {}, visitModalIsOpen: false})
+    this.setState({currentVisit: {}, openVisitModalIsOpen: false, bookedVisitModalIsOpen: false})
   }
   handleClick = (type, element) => {
     this.closeModal()
@@ -38,7 +47,7 @@ class Visits extends Component {
     let visit = this.props.visits[key]
     if (!visit.closed) {
       let visitStyle = () => {
-        return visit.opened ? " bg-success" : ""
+        return visit.opened ? " bg-success" : " bg-warning"
       }
 
       return <div
@@ -46,7 +55,7 @@ class Visits extends Component {
         className={visitStyle()}
         onClick={this.openModal.bind(this, visit)}
       >
-        <small>{visit.qty_people} {visit.opened_at_time}</small>
+        <small>{visit.qty_people} {visit.opened_at_time || visit.book_start_time }</small>
       </div>
     } else { return " "}
   }
@@ -59,12 +68,20 @@ class Visits extends Component {
 
     return <div>
       <MyModal
-        isOpen={this.state.visitModalIsOpen}
+        isOpen={this.state.openVisitModalIsOpen}
         header="Управление открытым столом"
         hideFooter="true"
         modalClose={this.closeModal}
       >
         <VisitOpenMenu element={this.state.currentVisit} handleClick={this.handleClick} />
+      </MyModal>
+      <MyModal
+        isOpen={this.state.bookedVisitModalIsOpen}
+        header="Управление бронью"
+        hideFooter="true"
+        modalClose={this.closeModal}
+      >
+        <VisitBookedMenu element={this.state.currentVisit} handleClick={this.handleClick} />
       </MyModal>
       {visit_ids.map(this.renderVisit)}
     </div>

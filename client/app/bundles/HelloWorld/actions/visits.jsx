@@ -31,7 +31,6 @@ export function openVisit(visit) {
       success: (data) => {
         console.log('succes open visit')
         dispatch({type: types.ERASE_CHOOSED_PLACE})
-        dispatch
       },
       errors: (data) => { console.log('error open visit') },
     })
@@ -43,7 +42,7 @@ export const addVisit = (data) => ({
 });
 export function closeVisit(visit) {
   return (dispatch) => {
-    console.log('delete visit')
+    console.log('close visit')
 
     fetchDataClean({
       url: '/visits/' + visit.id + '/close',

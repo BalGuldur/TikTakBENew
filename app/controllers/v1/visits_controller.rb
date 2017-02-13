@@ -18,6 +18,8 @@ class V1::VisitsController < V1::BaseController
     puts "free? #{Place.where(id: visit_params[:place_ids]).free?}"
     if Place.where(id: visit_params[:place_ids]).free?
       @visit = Visit.new(visit_params)
+      # Переводим значение параметра из 3600 60 в текущую дату + время
+      @visit.book_start = book_start_param
       @visit.location = current_location
       if @visit.save
         # Broadcats не делаем, т.к. это редко используемый элемент
@@ -71,12 +73,22 @@ class V1::VisitsController < V1::BaseController
 
   private
 
+  def book_start_param
+    if params[:book_start].present?
+      data = DateTime.now.to_date.to_s
+      time = Time.at(params[:book_start].to_i).to_s(:time)
+      return (data+" "+time).to_datetime
+    else
+      nil
+    end
+  end
+
   def set_visit
     @visit = Visit.find_by_id(params[:id])
   end
 
   def visit_params
-    params.permit(:qty_people, :opened, :opened_at, :booked, :booked_at, :closed, :closed_at, :deleted, :deleted_at, place_ids: [])
+    params.permit(:qty_people, :opened, :opened_at, :booked, :closed, :closed_at, :deleted, :deleted_at, place_ids: [])
   end
 
   def success_action

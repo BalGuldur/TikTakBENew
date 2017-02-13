@@ -229,6 +229,8 @@ function visits(state = '', action) {
       return Object.assign({}, state, {[action.data.id]: action.data})
     case types.CLOSE_VISIT:
       return baseActions.deleteElement(state, action.data.id.toString())
+    case types.UPDATE_VISIT:
+      return Object.assign({}, state, {[action.data.id]: action.data})
     default:
       return state;
   }

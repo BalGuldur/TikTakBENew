@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'index', on: :collection
       get 'today', on: :collection
       get 'close', on: :member
+      get 'convert_to_open', on: :member
     end
     resources :menu_items, only: [:create, :destroy, :update] do
       get 'index', on: :collection

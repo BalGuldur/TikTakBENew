@@ -38,6 +38,9 @@ class Visits extends Component {
       case 'close':
         this.props.closeVisit(element)
         break
+      case 'convert-to-open':
+        this.props.convertToOpenVisit(element)
+        break
       default:
         console.log('not response type')
     }
@@ -55,7 +58,7 @@ class Visits extends Component {
         className={visitStyle()}
         onClick={this.openModal.bind(this, visit)}
       >
-        <small>{visit.qty_people} {visit.opened_at_time || visit.book_start_time }</small>
+        <small>{visit.fullname} {visit.opened_at_time || visit.book_start_time }</small>
       </div>
     } else { return " "}
   }

@@ -53,6 +53,7 @@ class Visit < ApplicationRecord
     default_obj.merge!({closed: false}) if closed.nil?
     default_obj.merge!({opened: true}) if opened.nil?
     default_obj.merge!({opened_at: DateTime.now}) if opened_at.nil? and opened || default_obj[:opened]
+    default_obj.merge!({booked_at: DateTime.now}) if booked_at.nil? and booked || default_obj[:booked]
     update(default_obj) if !default_obj.empty?
   end
 

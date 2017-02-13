@@ -58,3 +58,21 @@ export const close_visit = (data) => ({
   type: types.CLOSE_VISIT,
   data,
 })
+export function convertToOpenVisit(visit) {
+  return (dispatch) => {
+    console.log('convert to open visit')
+
+    fetchDataClean({
+      url: '/visits/' + visit.id + '/convert_to_open',
+      method: 'GET',
+      success: (data) => {
+        console.log('success convert to open visit')
+      },
+      errors: (data) => { console.log('error convert to open visit') },
+    })
+  }
+}
+export const update_visit = (data) => ({
+  type: types.UPDATE_VISIT,
+  data,
+})

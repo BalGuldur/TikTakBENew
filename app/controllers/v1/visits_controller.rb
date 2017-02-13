@@ -1,7 +1,7 @@
 class V1::VisitsController < V1::BaseController
   before_action :check_current_location
   before_action :set_action_log
-  before_action :set_visit, only: [:update, :destroy, :close]
+  before_action :set_visit, only: [:update, :destroy, :close, :convert_to_open]
 
   def index
     render json: current_location.visits.front_view, status: :ok
@@ -16,7 +16,7 @@ class V1::VisitsController < V1::BaseController
   def create
     puts "visit_params #{visit_params[:place_ids]}"
     puts "free? #{Place.where(id: visit_params[:place_ids]).free?}"
-    if Place.where(id: visit_params[:place_ids]).free?
+    if visit_params[:booked] || Place.where(id: visit_params[:place_ids]).free?
       @visit = Visit.new(visit_params)
       # Переводим значение параметра из 3600 60 в текущую дату + время
       @visit.book_start = book_start_param
@@ -43,6 +43,17 @@ class V1::VisitsController < V1::BaseController
       success_action
       render json: @visit.front_view, status: :ok
       broadcast('/broadcast', {action: 'close_visit', data: @visit.front_view})
+    else
+      error_action
+      render json: @visit.errors, status: 400
+    end
+  end
+
+  def convert_to_open
+    if @visit.update opened: true, opened_at: DateTime.now
+      success_action
+      render json: @visit.front_view, status: :ok
+      broadcast('/broadcast', {action: 'update_visit', data: @visit.front_view})
     else
       error_action
       render json: @visit.errors, status: 400
@@ -88,7 +99,7 @@ class V1::VisitsController < V1::BaseController
   end
 
   def visit_params
-    params.permit(:qty_people, :opened, :opened_at, :booked, :closed, :closed_at, :deleted, :deleted_at, place_ids: [])
+    params.permit(:qty_people, :opened, :opened_at, :booked, :booked_at, :closed, :closed_at, :deleted, :deleted_at, place_ids: [])
   end
 
   def success_action

@@ -7,12 +7,15 @@ class Visits extends Component {
   constructor(props) {
     super(props)
   }
-  componentWillMount = () => { console.log('fetch visits'); this.props.fetchVisits(); }
+  componentWillMount = () => { console.log('fetch visits'); this.props.fetchVisits(this.props.visits_date); }
 
   render = () =>
     <Halls/>
 }
 
-const mapStateToProps = (state) => ({visits: state.visits})
+const mapStateToProps = (state) => ({
+  visits: state.visits,
+  visits_date: state.visits_date,
+})
 
 export default connect(mapStateToProps, actions)(Visits)

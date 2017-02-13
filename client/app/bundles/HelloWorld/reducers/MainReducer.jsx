@@ -256,6 +256,14 @@ function place_to_visits(state = '', action) {
       return state;
   }
 }
+function visits_date(state = new Date().toISOString(), action) {
+  switch (action.type) {
+    case types.CHANGE_VISITS_DATE:
+      return action.date
+    default:
+      return state;
+  }
+}
 // Object.assign({}, state, action.data)
 // {...state, hall}
 
@@ -282,6 +290,7 @@ const MainReducer = combineReducers({
   menu_items,
   visits,
   place_to_visits,
+  visits_date,
 });
 
 export default MainReducer;

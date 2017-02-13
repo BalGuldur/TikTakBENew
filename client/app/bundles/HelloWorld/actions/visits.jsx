@@ -2,13 +2,34 @@ import * as types from '../constants/main'
 
 import { fetchData, fetchDataClean } from './helpers'
 
+export function fetchVisitsOnDate(newDate) {
+  return (dispatch) => {
+    console.log ('fetch visits on date')
+    let date = newDate
+
+    fetchDataClean({
+      url: '/visits/index?visits_date='+date,
+      method: 'GET',
+      success: (data) => {
+        console.log('success fetch visits on date')
+        dispatch({type: types.SET_VISITS, visits: data.visits, place_to_visits: data.place_to_visits,})
+        // dispatch({type: types.SET_HALLS_TO_PLACES, halls_to_places: data.halls_to_places})
+      },
+      errors: (data) => {
+        console.log('error fetch visits on date')
+      }
+    })
+  }
+}
 export function fetchVisits() {
   return (dispatch) => {
     console.log ('fetch visits')
+    let date = date || new Date().toISOString()
 
     fetchDataClean({
       url: '/visits/today',
       method: 'GET',
+      date: {visits_date: date},
       success: (data) => {
         console.log('success fetch visits')
         dispatch({type: types.SET_VISITS, visits: data.visits, place_to_visits: data.place_to_visits,})

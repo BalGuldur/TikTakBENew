@@ -36,6 +36,10 @@ class Visit < ApplicationRecord
     as_json(methods: [:place_ids, :opened_at_time, :book_start_time])
   end
 
+  def self.active(date)
+    all.where(opened_at: date.to_date..(date.to_date+1.day)).or(all.where(book_start: date.to_date..(date.to_date+1.day)))
+  end
+
   private
 
   def opened_at_time

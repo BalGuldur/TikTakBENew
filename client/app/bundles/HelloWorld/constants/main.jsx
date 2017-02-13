@@ -36,5 +36,6 @@ export const SET_VISITS = 'SET_VISITS';
 export const ADD_VISIT = "ADD_VISIT";
 export const CLOSE_VISIT = "CLOSE_VISIT";
 export const UPDATE_VISIT = "UPDATE_VISIT";
+export const CHANGE_VISITS_DATE = "CHANGE_VISITS_DATE";
 
 export const LOG = 'LOG';

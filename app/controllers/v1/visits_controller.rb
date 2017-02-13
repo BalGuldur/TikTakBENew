@@ -4,11 +4,13 @@ class V1::VisitsController < V1::BaseController
   before_action :set_visit, only: [:update, :destroy, :close, :convert_to_open]
 
   def index
-    render json: current_location.visits.front_view, status: :ok
+    visits = current_location.visits.active(params[:visits_date].to_date).front_view
+    render json: visits, status: :ok
+    # render json: current_location.visits.active(params[:visits_date]).front_view, status: :ok
   end
 
   def today
-  #   TODO: сделать смену
+  #   TODO: сделать смену, изменить метод todays (использовать booking_at)
     visits = current_location.visits #.todays
     render json: visits.front_view, status: :ok
   end

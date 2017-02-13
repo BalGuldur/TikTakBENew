@@ -9,6 +9,7 @@ import * as menuDepartmentsActions from './menu_departments'
 import * as menuCategoriesActions from './menu_categories'
 import * as menuItemsActions from './menu_items'
 import * as visitsActions from './visits'
+import * as visitsDateActions from './visits_date'
 
 const actions = {
   ...mainActions,
@@ -22,6 +23,7 @@ const actions = {
   ...menuCategoriesActions,
   ...menuItemsActions,
   ...visitsActions,
+  ...visitsDateActions,
 }
 
 export default actions

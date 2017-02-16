@@ -1,30 +1,33 @@
-class MenuItem < ApplicationRecord
+class Order < ApplicationRecord
   acts_as_paranoid column: :deleted, sentinel_value: false
 
   before_save :set_default
 
-  belongs_to :menu_category
-
-  has_many :order_items
+  belongs_to :visit
+  has_many :order_items, dependent: :destroy
 
   def self.front_view
-    menu_items = all # .includes()
-    front_menu_items = {}
-    menu_items.each {|m_d| front_menu_items.merge! m_d.front_view_with_key}
+    orders = all.includes(:order_items) # .includes()
+    front_orders = {}
+    front_order_to_items = {}
+    orders.each {|order| front_orders.merge! order.front_view_with_key}
+    orders.each {|order| front_order_to_items.merge!(order.id => order.order_item_ids)}
     # result_halls_to_places = {}
     # halls.each {|hall| result_halls_to_places.merge!({hall.id => hall.place_ids})}
     {
-        menu_items: front_menu_items,
+        orders: front_orders,
+        order_to_items: front_order_to_items,
+        # menu_cat_to_menu_items: front_menu_cat_to_menu_items,
         # halls_to_places: result_halls_to_places,
     }
   end
 
   def front_view_with_key
-    { id => as_json }
+    { id => front_view }
   end
 
   def front_view
-    as_json
+    as_json(methods: [:order_item_ids])
   end
 
   private

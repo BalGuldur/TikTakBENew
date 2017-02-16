@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216091421) do
+ActiveRecord::Schema.define(version: 20170216142437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,31 @@ ActiveRecord::Schema.define(version: 20170216091421) do
     t.index ["user_id"], name: "index_omni_auth_accounts_on_user_id", using: :btree
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "price"
+    t.integer  "discount"
+    t.integer  "menu_item_id"
+    t.integer  "order_id"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["deleted"], name: "index_order_items_on_deleted", using: :btree
+    t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id", using: :btree
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "visit_id"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted"], name: "index_orders_on_deleted", using: :btree
+    t.index ["visit_id"], name: "index_orders_on_visit_id", using: :btree
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "title"
     t.integer  "hall_id"
@@ -193,6 +218,9 @@ ActiveRecord::Schema.define(version: 20170216091421) do
   add_foreign_key "menu_departments", "locations"
   add_foreign_key "menu_items", "menu_categories"
   add_foreign_key "omni_auth_accounts", "users"
+  add_foreign_key "order_items", "menu_items"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "visits"
   add_foreign_key "places", "halls"
   add_foreign_key "visits", "locations"
 end

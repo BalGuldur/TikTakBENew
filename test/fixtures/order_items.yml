@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  price: 1
+  discount: 1
+  menu_item: one
+  order: one
+  deleted: false
+  deleted_at: 2017-02-16 17:24:37
+
+two:
+  title: MyString
+  price: 1
+  discount: 1
+  menu_item: two
+  order: two
+  deleted: false
+  deleted_at: 2017-02-16 17:24:37

@@ -9,7 +9,7 @@ class Visit < ApplicationRecord
 
   belongs_to :location
   has_and_belongs_to_many :places
-  # has_many :menu_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   def self.front_view
     visits = all.includes(:places) # .includes()

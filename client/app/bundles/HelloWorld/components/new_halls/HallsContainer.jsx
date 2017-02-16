@@ -7,6 +7,7 @@ import IBox from '../layouts/IBox'
 import CollectionContainer from '../base_containers/CollectionContainer'
 import Places from './PlacesContainer'
 // import MenuItems from './MenuItemsContainer'
+import NavTabs from '../base_elements/NavTabs'
 
 
 class Halls extends Component {

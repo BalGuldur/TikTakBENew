@@ -4,6 +4,7 @@ class Place < ApplicationRecord
   # default_scope { where(deleted: false) }
 
   belongs_to :hall
+  has_one :location, through: :hall
   has_and_belongs_to_many :visits
 
   def self.front_view
@@ -27,14 +28,17 @@ class Place < ApplicationRecord
   end
 
   def self.free?
-    Place.joins(:visits).where(id: ids, visits: {opened: true}).empty?
+    if !all.empty?
+      location = first.location
+      if location.visits_today.opened.joins(:places).where(places: {id: ids}).empty?
+        return true
+      else
+        return false
+      end
+    end
   end
 
   private
-
-  # def opened
-  #   visits.opened.empty? ? false : true
-  # end
 
   def paranoia_restore_attributes
     {

@@ -11,11 +11,17 @@ class MyDatePicker extends Component {
   }
 
   handleChange = (value, formattedValue) => {
-    this.setState({
-      value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-      formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
-    });
-    this.props.handleChange(value)
+    if (value != null) {
+      this.setState({
+        value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
+        formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
+      });
+      this.props.handleChange(value)
+    }
+  }
+
+  onClear = () => {
+    this.handleChange(new Date().toISOString())
   }
 
   render = () => {
@@ -28,6 +34,8 @@ class MyDatePicker extends Component {
           className="inline"
           onChange={this.handleChange}
           showClearButton={this.props.showClearButton}
+          showTodayButton={this.props.showTodayButton}
+          onClear={this.onClear}
         />
     </div>
   }

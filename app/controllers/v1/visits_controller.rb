@@ -4,21 +4,20 @@ class V1::VisitsController < V1::BaseController
   before_action :set_visit, only: [:update, :destroy, :close, :convert_to_open]
 
   def index
-    visits = current_location.visits.active(params[:visits_date].to_date).front_view
-    render json: visits, status: :ok
+    visits = current_location.visits_on_day(params[:visits_date].to_date)
+    render json: visits.front_view, status: :ok
     # render json: current_location.visits.active(params[:visits_date]).front_view, status: :ok
   end
 
   def today
   #   TODO: сделать смену, изменить метод todays (использовать booking_at)
-    visits = current_location.visits #.todays
+    visits = current_location.visits_today
     render json: visits.front_view, status: :ok
   end
 
   def create
-    puts "visit_params #{visit_params[:place_ids]}"
-    puts "free? #{Place.where(id: visit_params[:place_ids]).free?}"
-    if visit_params[:booked] || Place.where(id: visit_params[:place_ids]).free?
+    places = Place.where(id: visit_params[:place_ids])
+    if visit_params[:booked] || places.free?
       @visit = Visit.new(visit_params)
       # Переводим значение параметра из 3600 60 в текущую дату + время
       @visit.book_start = book_start_param

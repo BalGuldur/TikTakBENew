@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../actions/visits'
-import Halls from '../new_halls/HallsContainer'
+import Halls from '../work_window/HallsContainer'
 
 class Visits extends Component {
   constructor(props) {

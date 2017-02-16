@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213100934) do
+ActiveRecord::Schema.define(version: 20170216091421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20170213100934) do
     t.datetime "updated_at", null: false
     t.string   "loc_hash"
     t.datetime "deleted_at"
+    t.datetime "open_time"
+    t.datetime "close_time"
     t.index ["company_id"], name: "index_locations_on_company_id", using: :btree
     t.index ["deleted"], name: "index_locations_on_deleted", using: :btree
   end

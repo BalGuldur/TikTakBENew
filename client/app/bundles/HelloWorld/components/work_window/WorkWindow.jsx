@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Halls from '../new_halls/HallsContainer'
+import Halls from './HallsContainer'
 import ButtonWithChild from '../base_containers/CRUD/ButtonWithChild'
 import StandartForm from '../base_containers/StandartForm'
 import OpenPlaceForm from './OpenPlaceForm'
@@ -24,8 +24,6 @@ class WorkWindow extends Component {
   disabledBookingButton = () => {if(this.props.choosed_places.length > 0) return "false"; else return "true"}
 
   handleChangeDate = (newDate) => {
-    console.log('change date')
-    console.log(newDate)
     this.props.changeVisitsDate(newDate)
     this.props.fetchVisitsOnDate(newDate)
   }
@@ -84,8 +82,9 @@ class WorkWindow extends Component {
       </div>
       <div className="col-sm-6">
         <MyDatePicker
-          showClearButton={false}
+          showClearButton={true}
           handleChange={this.handleChangeDate}
+          showTodayButton={true}
         />
       </div>
     </div>

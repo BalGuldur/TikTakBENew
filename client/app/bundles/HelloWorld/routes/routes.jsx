@@ -8,9 +8,9 @@ import Locations from '../containers/LocationsContainer'
 import Employees from '../containers/EmployeesContainer'
 import PageLayout from '../components/layouts/ContentLayout'
 import Halls from '../components/new_halls/HallsContainer'
-// import MenuControl from '../containers/MenuControlContainer'
 import Menu from '../containers/MenuContainer'
 import WorkWindow from '../containers/WorkWindow'
+import Orders from '../containers/OrdersContainer'
 
 export default (
   <Route path="/" component={AppLayout}>
@@ -25,5 +25,9 @@ export default (
       <IndexRoute component={Halls} config_mode="true"/>
     </Route>
     <Route path="menu_control" component={Menu} config_mode="true"/>
+    <Route path="visits" component={PageLayout}>
+      {/*<IndexRoute component={}/>*/}
+      <Route path=":visitId/orders" component={Orders}/>
+    </Route>
   </Route>
 );

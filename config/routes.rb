@@ -21,9 +21,16 @@ Rails.application.routes.draw do
   get 'halls_control', to: 'main#index'
   get 'menu_control', to: 'main#index'
   get 'work_window', to: 'main#index'
+  get 'visits/:id/orders', to: 'main#index'
 
   # Внутренние ссылки API
   api_version(module: "V1", path: {value: "v1"}, default: true) do # RuboCop::Disable Metrics/BlockLength
+    resources :order_items, only: [:create, :destroy, :update] do
+      get 'index', on: :collection
+    end
+    resources :orders, only: [:create, :destroy, :update] do
+      get 'index', on: :collection
+    end
     resources :visits, only: [:create, :destroy, :update] do
       get 'index', on: :collection
       get 'today', on: :collection

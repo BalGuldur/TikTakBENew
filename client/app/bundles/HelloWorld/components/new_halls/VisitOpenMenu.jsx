@@ -9,6 +9,10 @@ const VisitOpenMenu = (props) => {
       className="btn btn-default"
       handleClick={props.handleClick.bind(this, "close", element)}
     >Закрыть</MyButton>
+    <MyButton
+      className="btn btn-default"
+      handleClick={props.handleClick.bind(this, 'orders', element)}
+    >Заказы</MyButton>
   </div>
 }
 

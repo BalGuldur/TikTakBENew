@@ -1,55 +1,55 @@
-class V1::MenuItemsController < V1::BaseController
+class V1::OrdersController < V1::BaseController
   before_action :check_current_location
   before_action :set_action_log
-  before_action :set_menu_item, only: [:update, :destroy]
+  before_action :set_order, only: [:update, :destroy]
 
   def index
-    render json: current_location.menu_items.front_view, status: :ok
+    render json: current_location.orders.front_view, status: :ok
   end
 
   def create
-    @menu_item = MenuItem.new(menu_item_params)
-    if @menu_item.save
+    @order = Order.new(order_params)
+    if @order.save
       # Broadcats не делаем, т.к. это редко используемый элемент
       # Обновлем тлоько на клиенте с помощью вызова самого action
       success_action
-      render json: @menu_item.front_view, status: :ok
+      render json: @order.front_view, status: :ok
     else
       error_action
-      render json: @menu_item.errors, status: 400
+      render json: @order.errors, status: 400
     end
   end
 
   def destroy
     # Broadcats не делаем, т.к. это редко используемый элемент
     # Обновлем тлоько на клиенте с помощью вызова самого action
-    if @menu_item.destroy
+    if @order.destroy
       success_action
-      render json: @menu_item.front_view, status: :ok
+      render json: @order.front_view, status: :ok
     else
       error_action
-      redner json: @menu_item.errors, status: 400
+      redner json: @order.errors, status: 400
     end
   end
 
   def update
-    if @menu_item.update menu_item_params
+    if @order.update order_params
       success_action
-      render json: @menu_item.front_view, status: :ok
+      render json: @order.front_view, status: :ok
     else
       error_action
-      render json: @menu_item.errors, status: 400
+      render json: @order.errors, status: 400
     end
   end
 
   private
 
-  def set_menu_item
-    @menu_item = MenuItem.find_by_id(params[:id])
+  def set_order
+    @order = Order.find_by_id(params[:id])
   end
 
-  def menu_item_params
-    params.permit(:title, :price, :menu_category_id)
+  def order_params
+    params.permit(:visit_id)
   end
 
   def success_action

@@ -4,6 +4,7 @@ import * as actions from '../../actions/visits'
 import MyModal from '../base_containers/CRUD/MyModal'
 import VisitOpenMenu from './VisitOpenMenu'
 import VisitBookedMenu from './VisitBookedMenu'
+import { browserHistory } from 'react-router'
 
 class Visits extends Component {
   constructor(props) {
@@ -40,6 +41,10 @@ class Visits extends Component {
         break
       case 'convert-to-open':
         this.props.convertToOpenVisit(element)
+        break
+      case 'orders':
+        let url = '/visits/'+element.id+'/orders'
+        browserHistory.push(url)
         break
       default:
         console.log('not response type')

@@ -13,6 +13,8 @@ class Location < ApplicationRecord
   has_many :menu_categories, through: :menu_departments
   has_many :menu_items, through: :menu_categories
   has_many :visits, dependent: :destroy
+  has_many :orders, through: :visits
+  has_many :order_items, through: :orders
 
   def visits_on_day(date_time)
     visits.active(work_day(date_time))

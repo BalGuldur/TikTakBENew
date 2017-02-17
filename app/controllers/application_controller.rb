@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
     Net::HTTP.post_form(uri, message: message.to_json)
   end
 
+  def success_action
+    @action_log.update success: true
+  end
+
+  def error_action
+    @action_lod.update success: false
+  end
+
   def set_action_log
     @action_log = ActionLog.create(
         action: action_name,
@@ -22,6 +30,7 @@ class ApplicationController < ActionController::Base
         parameters: params.as_json,
         company: current_company,
         employee: current_employee,
+        request: {"remote_ip" => request.remote_ip}
     )
   end
 
